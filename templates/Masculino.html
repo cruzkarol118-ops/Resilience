@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='mas/Resilience 1.png') }}" type="image/x-icon">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"/>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://www.paypal.com/sdk/js?client-id=BAAaJ6MNguZuDIVxT3gYkSPhyapZdfMsQ3La6TDL13_Kzjx_byK3ZKBvBkLFTKVoEoJcPTx8_PxVrHdduM&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
+    <link rel="stylesheet" href="{{ url_for('static',filename='swiper-bundle.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='chatbot.css') }}">
+    <title>RESILIENCE</title>
+  </head>
+  <body>
+    {% if session.usuario %}
+    <div class="alert alert-success" style="text-align: center; margin-bottom: 0;">
+        Bienvenido/a, <strong>{{ session.usuario.nombres }}</strong>
+    </div>
+    
+    {% endif %}
+    <!--Header-->
+    <header class="header" id="header">
+      <nav class="nav container">
+        <a href="#" class="navL">
+          <img src="{{ url_for('static', filename='mas/Libro.png') }}" alt="favicon" class="navL-img" />
+          <strong>SUPPORT</strong>
+        </a>
+
+        <div class="navM" id="nav-menu">
+          <ul class="navList">
+            <li class="navItem">
+              <a href="#home" class="navLink active-link">Inicio</a>
+            </li>
+            <li class="navItem">
+              <a href="#about" class="navLink">Nosotros</a>
+            </li>
+            <li class="navItem">
+              <a href="#product" class="navLink">Contextualizate</a>
+            </li>
+            <li class="navItem">
+              <a href="#new" class="navLink">Recomendaciones</a>  
+            </li>
+            <li class="navItem">
+              <a href="{{ url_for('agenda') }}" class="navLink">Agenda</a>  
+            </li>
+            
+            {% if session.usuario %}
+            <li class="navItem session-item">
+              <a href="{{ url_for('mis_resultados') }}" class="navLink">
+                  <i class="fas fa-user"></i> {{ session.usuario.nombres }} {{ session.usuario.apellidos }}
+              </a>
+            </li>
+            <li class="navItem session-item">
+              <a href="{{ url_for('logout') }}" class="navLink">
+                <i class="fas fa-sign-out-alt"></i> Salir
+              </a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+
+        <div class="navToggle" id="nav-toggle">
+          <i class="bx bx-menu"></i>
+        </div>
+      </nav>
+    </header>
+
+    <main class="main">
+      <!--HOME-->
+      <section class="home container" id="home">
+        <div class="swiper home-swiper">
+          <div class="swiper-wrapper">
+            <section>
+              <div class="homecont grid">
+                <div class="homedata" style="margin-top: 50px;">
+                  <h1 class="hometitle"> RESILIENCE</h1>
+                  <p class="homedes" style="font-size: 14px; text-align: justify;">
+                    Si has llegado hasta aquí, quiero darte la bienvenida 
+                    a nuestro espacio de bienestar emocional. En este rincón 
+                    virtual, encontrarás contenido para generar comprensión y calma. 
+                    Nuestro objetivo es acompañarte en tu camino hacia la salud mental 
+                    y brindarte herramientas para enfrentar los desafíos con confianza
+                    y fortaleza. 
+                  </p>
+                  
+                </div>
+
+                <div class="homegroup">
+                  <img src="{{ url_for('static', filename='mas/Resilience 1.png') }}" alt="" class="homeimg" />
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+         <!--ABOUT-->
+         <section class="section about" id="about">
+          <div class="aboutcontainer container grid">
+            <img src="{{ url_for('static', filename='mas/nosotros.png') }}" alt="" class="aboutimg" style="width: 400px; height: 420px;" />
+            <div class="aboutdata">
+              <h2 class="sectiontitle abouttitle">Nosotros Somos </h2>
+              <p class="aboutdescription" style="font-size: 14px; text-align: justify; margin-top: -5%;">
+                Una página web diseñada para ser tu compañero de confianza 
+                en el camino hacia la salud mental. Ofrecemos recursos, consejos y 
+                estrategias para ayudarte a enfrentar los desafíos de la vida con 
+                fortaleza y adaptabilidad.
+              </p>
+              
+            </div>
+          </div>
+        </section>
+
+      <!--CATEGORY-->
+      <section class="section category">
+        <h2 class="sectiontitle">
+        Valores Claves Para el Bienestar Social
+        </h2>
+
+  
+    <div class="categorycontainer container grid">
+          <div class="categorydata">
+            <img src="{{ url_for('static', filename='mas/Auto.png') }}" alt="" />
+  
+       <center>
+       <p>
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+          Autoestima
+        </button>
+       </p>
+      </center>
+      <div style="min-height: 120px;">
+        <div class="collapse collapse-horizontal" id="collapseWidthExample">
+          <div class="card card-body" style="width: 240px; font-size: 13px;">
+            Fomentarla es crucial. Los jóvenes deben aprender a valorarse a sí mismos y tener confianza en sus habilidades y capacidades. Una autoestima saludable puede ayudar a enfrentar los desafíos y superar los obstáculos emocionales.
+          </div>
+        </div>
+      </div>
+    </div>
+
+          <div class="categorydata">
+            <img src="{{ url_for('static', filename='mas/empati.png') }}" alt="" />
+
+            <center>
+              <p>
+               <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                 Empatia
+               </button>
+              </p>
+             </center>
+             <div style="min-height: 120px;">
+               <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                 <div class="card card-body" style="width: 240px; font-size: 13px;">
+                 La empatía es la capacidad de ponerse en el lugar del otro y comprender sus emociones o experiencias. Fomentarla nos permite desarrollar relaciones interpersonales más saludables y comprender mejor a quienes nos rodean.
+                 </div>
+               </div>
+             </div>
+          </div>
+
+          <div class="categorydata">
+            <img src="{{ url_for('static', filename='mas/Tolerancia.png') }}" alt="" />
+
+            <center>
+              <p>
+               <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample" style="font-size: 16px;">
+                 Tolerancia
+               </button>
+              </p>
+             </center>
+             <div style="min-height: 120px;">
+               <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                 <div class="card card-body" style="width: 240px; font-size: 13px;">
+                  Implica aceptar y respetar las diferencias de los demás,tanto en opinión como en comportamiento. En un mundo diverso, la tolerancia es esencial para promover la comprensión y la convivencia pacífica.
+                 </div>
+               </div>
+             </div>
+          </div>
+        </div>
+      </section>
+    
+
+      <!--PRODUCTS-->
+      <section class="section product" id="product">
+        <h2 class="sectiontitle"> Contextualizate: Transtornos Comunes</h2>
+
+        <div class="productcontainer container grid">
+          <a href="{{ url_for('Indexxx') }}"> <div class="productcontent">
+             <img src="{{ url_for('static', filename='mas/img New/1.jpeg') }}" alt="" class="productimg" style="width: 65%; height: 75%; border-radius: 10px;">
+
+            <br><br>
+             <h3 class="producttitle">Ansiedad</h3>
+            <button class="button productbutton">
+              <i class="bx bx-heart-circle"></i>
+            </button>
+          </div></a>
+
+          <a href="{{ url_for('bipolaridad') }}"><div class="productcontent">
+            <img src="{{ url_for('static', filename='mas/img New/2.jpeg') }}" alt="" class="productimg" style="width: 65%; height: 75%; border-radius: 10px;">
+            <br><br>
+            <h3 class="producttitle">Bipolaridad</h3>
+            <button class="button productbutton">
+              <i class="bx bx-heart-circle"></i>
+            </button>
+          </div></a>
+
+          <a href="{{ url_for('depresion') }}"><div class="productcontent"> 
+            <img src="{{ url_for('static', filename='mas/img New/3.jpeg') }}" alt="" class="productimg" style="width: 65%; height: 75%; border-radius: 10px;">
+            <br><br>
+            <h3 class="producttitle"> Depresion</h3>
+            <button class="button productbutton">
+              <i class="bx bx-heart-circle"></i>
+            </button>
+          </div></a>
+
+          <a href="{{ url_for('hiperactividad') }}"><div class="productcontent">
+            <img src="{{ url_for('static', filename='mas/img New/4.jpeg') }}" alt="" class="productimg" style="width: 65%; height: 75%; border-radius: 10px;">
+            <br><br>
+            <h3 class="producttitle">Hiperactividad</h3>
+            <button class="button productbutton">
+              <i class="bx bx-heart-circle"></i>
+            </button>
+          </div></a>
+
+          <a href="{{ url_for('adiccion') }}"><div class="productcontent">
+            <img src="{{ url_for('static', filename='mas/img New/5.jpeg') }}" alt="" class="productimg" style="width: 65%; height: 75%; border-radius: 10px;">
+            <br><br>
+            <h3 class="producttitle">Adiccion</h3>
+            <button class="button productbutton">
+              <i class="bx bx-heart-circle"></i>
+            </button>
+          </div></a>
+
+          <a href="{{ url_for('insomnio') }}"><div class="productcontent">
+            <img src="{{ url_for('static', filename='mas/img New/6.jpeg') }}" alt="" class="productimg" style="width: 65%; height: 75%; border-radius: 10px;">
+            <br><br>
+            <h3 class="producttitle"> Insomnio</h3>
+            <button class="button productbutton">
+              <i class="bx bx-heart-circle"></i>
+            </button>
+          </div></a>
+        </div>
+      </section>
+
+      <!--DESCUENTO-->
+      <section class="section discount">
+        <div class="discountcontainer container grid" id="Sicology">
+          <div class="discountdata">
+
+           
+
+
+            
+            <div id="paypal-container-JAGXUNBAUQH9A"style="width: 280px; margin-top: 10px; text-align: center; margin-left: -160px;"></div>
+
+    
+            <br><br>
+           
+            
+            <a href="{{ url_for('Sicologa') }}"><button class="btn" style="margin-top: -45px; margin-left: -50px; font-size: 14px;">
+                <svg height="24" width="24" fill="#FFFFFF" viewBox="0 0 24 24" data-name="Layer 1" id="Layer_1" class="sparkle">
+                    <path d="M10,21.236,6.755,14.745.264,11.5,6.755,8.255,10,1.764l3.245,6.491L19.736,11.5l-6.491,3.245ZM18,21l1.5,3L21,21l3-1.5L21,18l-1.5-3L18,18l-3,1.5ZM19.333,4.667,20.5,7l1.167-2.333L24,3.5,21.667,2.333,20.5,0,19.333,2.333,17,3.5Z"></path>
+                </svg>
+            
+                <span class="text">Continuar</span>
+            </button></a>
+                   
+                      
+                    
+            
+          </div>
+          <img src="{{ url_for('static', filename='mas/Caras.png') }}" alt="" class="discountimg" style="margin-left: -60px;">
+        </div>
+      </section>
+      <!-- Recomendaciones -->
+    <section class="section new" id="new">
+      <h2 class="sectiontitle">Recomendaciones</h2>
+
+      <div class="newcontainer">
+        {% for key, item in recomendaciones.items() %}
+        <div class="newcontent">
+          <div class="newtag">{{ item.titulo }}</div>
+          <a href="{{ url_for('mostrar_recomendacion', categoria=key) }}">
+            <img src="{{ url_for('static', filename='mas/' + item.icono) }}" alt="" class="newimg">
+          </a>
+          <div class="newprices">
+            <span class="newprice">
+              {{ item.descripcion }}
+            </span>
+            <button class="button newbutton">
+              <i class="bx bx-heart-circle"></i>
+            </button>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+
+  <br><br><br>
+
+  <!--FOOTERi-->
+  
+    <footer class="bg-light text-dark pt-5 pb-4">
+
+      <div class="container text-center text-md-start">
+
+        <div class="row text-center text-md-start">
+
+          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-6">
+
+            <h5 class="text-uppercase mb-6 font-weight-bold"> <strong class="zz">Te Agradecemos</strong></h5>
+            <hr class="mb-4">
+            <p>
+              Queremos expresar nuestro más sincero agradecimiento por visitar nuestra página y por tomar la valiente decisión de buscar apoyo para tu bienestar mental. Somos concientes que dar este paso no siempre es fácil, pero es un testimonio de tu fuerza y determinación para cuidarte a ti mismo
+            </p>
+
+          </div>
+
+
+          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-6">
+            <h5 class="text-uppercase mb-6 font-weight-bold"> <strong class="zz">servicios</strong> </h5>
+            <hr class="mb-4">
+
+            <p>
+              <a href="" class="xx">Empresas</a>
+            </p>
+
+            <p>
+              <a href="" class="xx">Institutos</a>
+            </p>
+
+            <p>
+              <a href="" class="xx">Sector Juvenil</a>
+            </p>
+
+            <p>
+              <a href="" class="xx">Instituciones Educativas</a>
+            </p>
+          </div>
+
+
+          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-6">
+            <h5 class="text-uppercase mb-6 font-weight-bold"> <strong class="zz">te ayudamos</strong> </h5>
+            <hr class="mb-4">
+
+            <p>
+              <a href="" class="xx">Tu Cuenta</a>
+            </p>
+
+            <p>
+              <a href="" class="xx">Tus Ordenes</a>
+            </p>
+
+            <p>
+              <a href="" class="xx">Tus Sugerencias</a>
+            </p>
+
+            <p>
+              <a href="" class="xx">Ayuda</a>
+            </p>
+          </div>
+
+
+          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-6">
+
+            <h5 class="text-uppercase mb-8 font-weight-bold "> <strong class="zz">contactanos</strong></h5>
+            <hr class="mb-8">
+
+            <P>
+              <li class="fas fa-home me-2"></li> <a href="" class="xx">Cucuta, Norte de santander</a>
+            </P>
+
+            <P>
+              <li class="fas fa-envelope me-2"></li> <a href="" class="xx">Ansiedad@gmail.com</a>
+            </P>
+
+            <P>
+              <li class="fas fa-phone me-2"></li> <a href="" class="xx">3115530291</a>
+            </P>
+
+            <P>
+              <li class="fas fa-print me-2"></li> <a href="" class="xx">3214730182</a>
+            </P>
+          </div>
+
+
+
+          <hr class="mb-10">
+
+          <br><br>
+          
+          <div class="text-center mb-2">
+            <p>
+              ¡Tú salud mental es tan importante como la física¡
+              <a href="">
+                <strong class="zz">Creemos en Ti</strong>
+              </a>
+            </p>
+          </div>
+
+
+          <div class="text-center" >
+
+            <div class="footersocial">
+              <a href="https://www.facebook.com/profile.php?id=100052679708141&mibextid=ZbWKwL" target="_blank" class="footersocial-link">
+                <i class="bx bxl-facebook"></i>
+              </a>
+              <a href="https://www.instagram.com/resilience.ayudapsico?igsh=aWs5aGF2aHg0azZl" target="_blank" class="footersocial-link">
+                <i class="bx bxl-instagram-alt"></i>
+              </a>
+              <a href="https://x.com/RECILIENCIA444?t=27sxq6QDgFFS0SYpxedkoQ&s=09" target="_blank" class="footersocial-link">
+                <i class="bx bxl-twitter"></i>
+              </a>
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </footer>
+
+    
+
+    <!--FOOTER-->
+    <a href="#" class="scrollup" id="scroll-up">
+      <i class="bx bx-up-arrow-alt scrollupicon"></i>
+    </a>
+
+    <!--JAVASCRIPT-->
+    <script src="js/scrollreveal.min.js"></script>
+
+    <script src="js/swiper-bundle.min.js"></script>
+
+    <script src="js/main.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+      paypal.HostedButtons({
+        hostedButtonId: "JAGXUNBAUQH9A",
+      }).render("#paypal-container-JAGXUNBAUQH9A")
+    </script>
+    <script src="{{ url_for('static', filename='js/chatbot.js') }}"></script>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+/* static/est_historial.css */
+
+/* --- Estilos de Contenedores y Alertas Comunes --- */
+.alert {
+    position: relative;
+    padding: 1rem;
+    padding-right: 3rem; 
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    max-width: 980px; 
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 500;
+}
+.alert-success { background: #28a745; color: #fff; }
+.alert-danger { background: #dc3545; color: #fff; }
+.alert-warning { background: #ffc107; color: #212529; }
+.alert-close-btn {
+    position: absolute; top: 0; right: 0; padding: 0.75rem 1rem; background: transparent; 
+    border: none; color: inherit; font-size: 1.5rem; font-weight: bold; cursor: pointer;
+    line-height: 1; opacity: 0.8;
+}
+.alert-close-btn:hover { opacity: 1; }
+.module-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.25rem; }
+.btn {
+  text-decoration: none; border: none; cursor: pointer; font-weight: 600; 
+  border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; 
+  padding: .55rem .9rem; transition: all .18s ease;
+}
+.action-btn { background: linear-gradient(90deg,#2c6ff5,#6f3be6); color: white; }
+.action-btn-outline {
+  background: transparent; color: #eae6ff; padding: .45rem .85rem; 
+  border: 1px solid rgba(255,255,255,0.15);
+}
+.action-btn-danger { background: linear-gradient(90deg,#ff5c7a,#ff6f5c); color: white; }
+.action-btn:hover, .action-btn-outline:hover, .action-btn-danger:hover {
+  filter: brightness(1.05); transform: translateY(-2px);
+}
+
+/* --- Estilos del Historial --- */
+.horarios-lista {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.horario-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10,6,60,0.95);
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    border-left: 5px solid #6f3be6;
+}
+
+.horario-detalle {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.horario-detalle .dia-semana {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #fff;
+}
+.horario-detalle .hora-bloque {
+    font-size: 1rem;
+    color: #dcd6ff;
+    font-weight: 500;
+}
+.horario-detalle .periodo-bloque {
+    font-size: 0.85rem;
+    color: #bfb8ff;
+}
+.horario-acciones {
+    display: flex;
+    gap: 0.75rem;
+}
+
+/* Etiquetas de Estado de Cita */
+.estado-cita {
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    display: inline-block;
+    align-self: flex-start;
+}
+
+.estado-cita.estado-solicitada {
+    background-color: rgba(161, 98, 7, 0.4);
+    border: 1px solid rgba(161, 98, 7, 0.8);
+    color: #fcd34d;
+}
+.estado-cita.estado-confirmada {
+    background-color: rgba(22, 163, 74, 0.4);
+    border: 1px solid rgba(22, 163, 74, 0.8);
+    color: #86efac;
+}
+.estado-cita.estado-cancelada {
+    background-color: rgba(156, 17, 17, 0.4);
+    border: 1px solid rgba(156, 17, 17, 0.8);
+    color: #ff9e9e;
+}
+.estado-cita.estado-realizada {
+    background-color: rgba(82, 82, 82, 0.4);
+    border: 1px solid rgba(82, 82, 82, 0.8);
+    color: #d4d4d4;
+}
+
+/* Mensaje de Lista Vacía */
+.horario-vacio-msg {
+    text-align: center;
+    max-width: 400px;
+    margin: 3rem auto;
+    padding: 2rem;
+    border: 1px dashed #6f3be6;
+    border-radius: 10px;
+    color: #dcd6ff;
+}
+.horario-vacio-msg i {
+    font-size: 3rem;
+    color: #6f3be6;
+    margin-bottom: 0.5rem;
+}
+.horario-vacio-msg p {
+    color: inherit;
+    font-size: 1rem;
+}

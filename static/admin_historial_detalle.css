@@ -1,0 +1,46 @@
+/* static/admin_historial_detalle.css */
+.calificacion-detalle {
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px dashed rgba(111, 59, 230, 0.5);
+    width: 100%;
+}
+
+.calificacion-detalle-titulo {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #fcd34d; /* Dorado */
+    margin-bottom: 0.25rem;
+}
+
+.calificacion-detalle-stars {
+    font-size: 1.25rem;
+}
+
+/* Estrellas encendidas - DORADO */
+.calificacion-detalle-stars .fas.fa-star {
+    color: #fcd34d; /* Dorado para estrellas encendidas */
+}
+
+/* Estrellas apagadas - GRIS */
+.calificacion-detalle-stars .far.fa-star {
+    color: #555; /* Gris para estrellas apagadas */
+}
+
+.calificacion-detalle-comentario {
+    font-size: 0.95rem;
+    color: #dcd6ff;
+    font-style: italic;
+    margin-top: 0.5rem;
+    background: rgba(0,0,0,0.2);
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.calificacion-no-enviada {
+    color: #999;
+    font-size: 0.85rem;
+    font-style: italic;
+}

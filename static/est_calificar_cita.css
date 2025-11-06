@@ -1,0 +1,58 @@
+/* static/est_calificar_cita.css */
+
+/* Estilos para el sistema de calificación por estrellas */
+.rating-group {
+    text-align: center;
+}
+.rating-label {
+    margin-bottom: 1rem !important;
+    font-size: 1.1rem;
+    color: #fff !important;
+}
+
+.rating-stars {
+    display: inline-block;
+    direction: rtl; /* Pone las estrellas de derecha a izquierda */
+}
+
+.rating-stars input[type="radio"] {
+    display: none; /* Oculta los radios reales */
+}
+
+.rating-stars label {
+    font-size: 3rem;
+    color: #555; /* Color de estrella apagada */
+    cursor: pointer;
+    transition: color 0.2s;
+    margin: 0 0.15rem;
+    display: inline-block; /* Estrellas verticales */
+}
+
+/* Efecto hover: ilumina la estrella y todas las anteriores */
+.rating-stars label:hover,
+.rating-stars label:hover ~ label {
+    color: #6f3be6; /* Color morado al pasar el mouse */
+}
+
+/* Efecto 'checked': ilumina la estrella seleccionada y las anteriores */
+.rating-stars input[type="radio"]:checked ~ label {
+    color: #fcd34d; /* Color dorado de estrella encendida */
+}
+
+/* --- Textarea --- */
+.form-detalle-cita .textarea {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: rgba(0,0,0,0.25);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1rem;
+    font-family: inherit;
+    resize: vertical; 
+}
+
+.form-detalle-cita .textarea:focus {
+    outline: none;
+    border-color: #6f3be6;
+}

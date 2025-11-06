@@ -1,0 +1,226 @@
+/* Estilos especificos para templates/agenda.html */
+
+.agenda-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  max-width: 980px;
+  margin: 0 auto;
+  align-items: start;
+  padding: 0 1rem;
+}
+
+.module-card {
+  background: linear-gradient(180deg, rgba(5,2,39,0.95) 0%, rgba(10,6,60,0.95) 100%);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: transform .18s ease, box-shadow .18s ease;
+  min-height: 220px;
+}
+
+.module-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 36px rgba(0,0,0,0.45);
+}
+
+.module-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.module-icon {
+  font-size: 2.25rem;
+  color: #fff;
+  background: linear-gradient(90deg,#6f3be6,#ea6fe6);
+  padding: 0.5rem;
+  border-radius: 8px;
+  width: 3.25rem;
+  height: 3.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.module-desc {
+  font-size: 0.95rem;
+  color: #dcd6ff;
+  margin-top: 0.25rem;
+  flex: 1;
+}
+
+.module-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 0.25rem;
+}
+
+.action-btn {
+  background: linear-gradient(90deg,#2c6ff5,#6f3be6);
+  color: white;
+  padding: .55rem .9rem;
+  border-radius: 8px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-btn-outline {
+  background: transparent;
+  color: #eae6ff;
+  padding: .45rem .85rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.15);
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.action-btn-danger {
+  background: linear-gradient(90deg,#ff5c7a,#ff6f5c);
+  color: white;
+  padding: .45rem .85rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.action-btn:hover,
+.action-btn-outline:hover,
+.action-btn-danger:hover {
+  filter: brightness(1.05);
+  transform: translateY(-2px);
+}
+
+.hint {
+  color: #bfb8ff;
+  font-size: 0.82rem;
+  margin-top: 0.4rem;
+}
+
+/* Responsive: una columna en móvil */
+@media (max-width: 800px) {
+  .agenda-container {
+    grid-template-columns: 1fr;
+    padding: 0 0.75rem;
+  }
+  .module-card { min-height: 180px; }
+}
+
+/* Ajustes menores para coherencia con style.css */
+.sectiontitle { margin-bottom: 1rem; }
+
+.cita-activa-card {
+    max-width: 550px;
+    margin: 0 auto;
+    background: linear-gradient(180deg, rgba(5,2,39,0.95) 0%, rgba(10,6,60,0.95) 100%);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+    color: #fff;
+}
+
+.cita-activa-card h3 {
+    border-bottom: 2px solid #6f3be6;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.cita-activa-card .detalle-grupo {
+    margin-bottom: 1rem;
+}
+
+.cita-activa-card .detalle-label {
+    display: block;
+    font-weight: 600;
+    color: #dcd6ff;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.cita-activa-card .detalle-valor {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    background-color: rgba(0,0,0,0.25);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1rem;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+/* Colores de Estado */
+.detalle-valor.estado-solicitada {
+    background-color: rgba(161, 98, 7, 0.4); /* Amarillo/Naranja */
+    border-color: rgba(161, 98, 7, 0.8);
+    color: #fcd34d; /* Texto amarillo */
+}
+.detalle-valor.estado-confirmada {
+    background-color: rgba(22, 163, 74, 0.4); /* Verde */
+    border-color: rgba(22, 163, 74, 0.8);
+    color: #86efac; /* Texto verde */
+}
+
+/* Contenedor base de la alerta */
+.alert {
+    position: relative;
+    padding: 1rem;
+    padding-right: 3rem; /* Espacio para el botón de cerrar */
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between; /* Alinea texto y botón */
+    align-items: center;
+    max-width: 980px; /* Limita el ancho */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Estilos de colores */
+.alert-success {
+    background: #28a745; 
+    color: #fff;
+}
+.alert-danger {
+    background: #dc3545; 
+    color: #fff;
+}
+.alert-warning {
+    background: #ffc107; 
+    color: #212529;
+}
+
+/* Botón de cerrar (la 'X') */
+.alert-close-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.75rem 1rem;
+    background: transparent;
+    border: none;
+    color: inherit;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+    opacity: 0.7;
+}
+.alert-close-btn:hover {
+    opacity: 1;
+}

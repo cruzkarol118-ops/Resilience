@@ -1,0 +1,85 @@
+[
+  {
+    "fecha": "2025-05-26T02:50:24.291426",
+    "tema": "ansiedad_adolescentes",
+    "usuario": {
+      "username": "CesarCelis01",
+      "email": "CesarCelis@example.com",
+      "nombres": "Cesar",
+      "apellidos": "Celis"
+    },
+    "respuestas": {
+      "1": "Sí muy a menudo",
+      "2": "Sí pero no es frecuente",
+      "3": "Sí muy a menudo",
+      "4": "Sí muy a menudo",
+      "5": "Sí pero no es frecuente",
+      "6": "Sí muy a menudo",
+      "7": "Sí muy a menudo",
+      "8": "Sí pero no es frecuente",
+      "9": "Sí muy a menudo",
+      "10": "Sí muy a menudo"
+    }
+  },
+  {
+    "fecha": "2025-05-26T04:23:40.339025",
+    "tema": "bipolaridad",
+    "usuario": {
+      "username": "CesarCelis01",
+      "email": "CesarCelis@example.com",
+      "nombres": "Cesar",
+      "apellidos": "Celis"
+    },
+    "respuestas": {
+      "1": "prueba2",
+      "2": "A menudo",
+      "3": "Siempre",
+      "4": "Muy poco",
+      "5": "Siempre",
+      "6": "Muy poco",
+      "7": "Nunca"
+    }
+  },
+  {
+    "fecha": "2025-05-25T23:55:06.450879",
+    "tema": "ansiedad_adolescentes",
+    "usuario": {
+      "username": "PruebaSujeto1",
+      "email": "sj1@example.es",
+      "nombres": "Sujeto 1",
+      "apellidos": ""
+    },
+    "respuestas": {
+      "1": "Sí pero no es frecuente",
+      "2": "Sí pero no es frecuente",
+      "3": "Sí pero no es frecuente",
+      "4": "Sí pero no es frecuente",
+      "5": "Sí pero no es frecuente",
+      "6": "Sí pero no es frecuente",
+      "7": "Sí pero no es frecuente",
+      "8": "Sí pero no es frecuente",
+      "9": "Sí pero no es frecuente",
+      "10": "Sí pero no es frecuente"
+    }
+  },
+  {
+    "fecha": "2025-05-26T04:34:24.980395",
+    "tema": "insomnio",
+    "usuario": {
+      "username": "CesarCelis01",
+      "email": "CesarCelis@example.com",
+      "nombres": "Cesar",
+      "apellidos": "Celis"
+    },
+    "respuestas": {
+      "1": "Rara vez",
+      "2": "Nunca",
+      "3": "A veces",
+      "4": "Más de una hora",
+      "5": "Entre 30 minutos y una hora",
+      "6": "Entre 30 minutos y una hora",
+      "7": "Sí",
+      "8": "No"
+    }
+  }
+]

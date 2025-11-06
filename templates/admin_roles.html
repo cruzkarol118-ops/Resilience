@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='mas/Resilience 1.png') }}" type="image/x-icon">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_roles.css') }}"> 
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <title>Gestión de Roles — RESILIENCE</title>
+</head>
+<body>
+    <main class="main">
+        <section class="section container" style="padding-top:6rem; padding-bottom:4rem;">
+            
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                {% for category, message in messages %}
+                  <div class="alert alert-{{ category }}">
+                    <span>{{ message }}</span>
+                    <button class="alert-close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+                  </div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+
+            <h2 class="sectiontitle">Panel de Administración de Roles</h2>
+            <p style="text-align:center; max-width:800px; margin:0 auto 2rem;">
+                {% if target_rol == 'Estudiante' %}
+                Usuarios registrados con el rol **'Estudiante'** que pueden ser promovidos a 'Psicólogo'.
+                {% else %}
+                Usuarios registrados con el rol **'Psicologo'** que pueden ser degradados a 'Estudiante'.
+                {% endif %}
+            </p>
+            
+            <form method="GET" action="{{ url_for('admin_roles') }}" class="form-busqueda">
+                <div class="form-group">
+                    <input type="hidden" name="rol" value="{{ target_rol }}">
+                    
+                    <input type="search" name="search_query" class="input" 
+                           placeholder="Buscar por Username, Nombre, Apellido o Cédula..." 
+                           value="{{ current_search }}">
+                    <button type="submit" class="btn action-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </form>
+            
+            <div class="module-actions" style="max-width: 900px; margin: 0 auto 1.5rem; justify-content: center;">
+                {% if target_rol == 'Estudiante' %}
+                <a class="btn action-btn-outline" href="{{ url_for('admin_roles', rol='Psicologo') }}" style="background: #ff5c7a;">
+                    <i class="fas fa-arrow-down"></i> Ver Psicólogos (Degradar)
+                </a>
+                {% else %}
+                <a class="btn action-btn-outline" href="{{ url_for('admin_roles', rol='Estudiante') }}" style="background: #2c6ff5;">
+                    <i class="fas fa-arrow-up"></i> Ver Estudiantes (Promover)
+                </a>
+                {% endif %}
+                <a class="btn action-btn-outline" href="{{ url_for('agenda') }}" style="background: #555;">
+                    <i class="fas fa-arrow-left"></i> Volver a la Agenda
+                </a>
+            </div>
+
+            {% if usuarios %}
+            <div class="horarios-lista">
+                {% for usuario in usuarios %}
+                
+                {% set rol_class = 'is-psicologo-card' if usuario.Rol == 'Psicologo' else 'is-estudiante-card' %}
+                {% set text_class = 'is-psicologo-text' if usuario.Rol == 'Psicologo' else 'is-estudiante-text' %}
+                
+                <div class="horario-card {{ rol_class }}">
+                    <div class="horario-detalle">
+                        <span class="dia-semana">{{ usuario.Nombres }} {{ usuario.Apellidos }}</span>
+                        <span class="hora-bloque">@{{ usuario.Username }} (ID: {{ usuario.ID_Usuario }})</span>
+                        <span class="periodo-bloque">{{ usuario.Email }}</span>
+                        
+                        <span class="periodo-bloque" style="font-weight: bold;">Cédula: {{ usuario.Cedula }}</span>
+                        <span class="periodo-bloque {{ text_class }}">
+                            Rol actual: {{ usuario.Rol }}
+                        </span>
+                    </div>
+                    
+                    <div class="horario-acciones">
+                        {% if target_rol == 'Estudiante' %}
+                        <form action="{{ url_for('admin_promote_psicologo', id_usuario=usuario.ID_Usuario) }}" method="POST"
+                              onsubmit="return confirm('¿Confirmar la promoción de {{ usuario.Username }} a Psicólogo?');">
+                            <button type="submit" class="btn action-btn" title="Promover a Psicólogo">
+                                <i class="fas fa-user-md"></i> Promover
+                            </button>
+                        </form>
+                        {% else %}
+                        <form action="{{ url_for('admin_degrade_estudiante', id_usuario=usuario.ID_Usuario) }}" method="POST"
+                              onsubmit="return confirm('¿Confirmar la DEGRADACIÓN de {{ usuario.Username }} a Estudiante?');">
+                            <button type="submit" class="btn action-btn-degrade" title="Degradar a Estudiante">
+                                <i class="fas fa-user-graduate"></i> Degradar
+                            </button>
+                        </form>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="horario-vacio-msg">
+                <i class="fas fa-users-slash"></i>
+                <p>
+                    {% if target_rol == 'Estudiante' %}
+                    No hay usuarios 'Estudiante' disponibles para promover o la búsqueda no arrojó resultados.
+                    {% else %}
+                    No hay usuarios 'Psicologo' disponibles para degradar o la búsqueda no arrojó resultados.
+                    {% endif %}
+                </p>
+            </div>
+            {% endif %}
+
+        </section>
+    </main>
+</body>
+</html>

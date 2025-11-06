@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RESILIENCE</title>
+
+    <!-- Librerías externas -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+    <!-- Ícono del sitio -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='mas/Resilience 1.png') }}" type="image/x-icon">
+
+    <!-- CSS local -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='Index.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="img">
+            <img src="{{ url_for('static', filename='mas/Libro.png') }}" alt="" style="width: 45px; height: 45px; margin: 0; margin-left: 80px;">
+        </div>
+        <h1 style="font-family: 'Times New Roman', Times, serif; margin-left: -798px;">Support</h1>
+        <nav class="navbar">
+            <a href="#"></a>
+            <a href="#"></a>
+            <a href="#"></a>
+            <a href="#"></a>
+            <a href="#"></a>
+        </nav>
+    </header>
+
+    <section class="home">
+        <div class="home-content">
+            <h2>Bienvenido Resiliente</h2>
+            <h3>A un Espacio Confortable</h3>
+            <p style="font-size: 16px; text-align: justify;">
+                En nuestro sitio web encontrarás una red de apoyo para tener el primer contacto con el mundo de la salud mental. Ofrecemos recursos, información y herramientas útiles que te ayudarán a entender mejor tus emociones y a encontrar el camino hacia el bienestar. Además, podrás conectarte con profesionales que te brindarán orientación y apoyo.
+            </p>
+            <div class="btn-box">
+                <a href="{{ url_for('index1') }}">Ingresar</a>
+            </div>
+        </div>
+
+        <div class="home-sci">
+            <a href="https://www.facebook.com/profile.php?id=100052679708141&mibextid=ZbWKwL"><i class='bx bxl-facebook'></i></a>
+            <a href="https://x.com/RECILIENCIA444?t=27sxq6QDgFFS0SYpxedkoQ&s=09"><i class='bx bxl-twitter'></i></a>
+            <a href="https://www.instagram.com/resilience.ayudapsico?igsh=aWs5aGF2aHg0azZl"><i class='bx bxl-instagram'></i></a>
+        </div>
+
+        <span class="home-imghover"></span>
+        <img src="{{ url_for('static', filename='mas/Resilience 1.png') }}" alt="" style="margin-left: 170px; width: 550px; height: 520px;">
+    </section>
+</body>
+</html>

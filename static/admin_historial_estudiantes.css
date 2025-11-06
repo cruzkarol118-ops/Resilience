@@ -1,0 +1,22 @@
+/* static/admin_historial_estudiantes.css */
+
+.periodo-header {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: rgba(5, 2, 39, 0.95); /* Dorado para destacar */
+    text-align: center;
+    margin: 2.5rem 0 1.5rem 0;
+    border-bottom: 2px solid rgba(5, 2, 39, 0.95);
+    padding-bottom: 0.5rem;
+}
+
+/* Ajustes a la tarjeta de horario para que funcione como tarjeta de usuario */
+.horario-card .horario-detalle .dia-semana { 
+    font-size: 1.2rem; 
+}
+.horario-card .horario-detalle .hora-bloque { 
+    font-size: 1rem; 
+}
+.horario-card .horario-detalle .periodo-bloque { 
+    font-size: 0.85rem; 
+}

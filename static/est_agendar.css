@@ -1,0 +1,209 @@
+/* static/est_agendar.css */
+
+.form-agendar {
+    max-width: 700px;
+    margin: 0 auto;
+    background: linear-gradient(180deg, rgba(5,2,39,0.95) 0%, rgba(10,6,60,0.95) 100%);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+    color: #fff;
+}
+
+.form-agendar h3 {
+    border-bottom: 2px solid #6f3be6;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-agendar .form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-agendar label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #dcd6ff;
+}
+
+.form-agendar .input,
+.form-agendar .select {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: rgba(0,0,0,0.25);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.form-agendar .input::placeholder { color: #aaa; }
+
+.module-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 0.25rem;
+}
+
+.btn {
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .55rem .9rem;
+}
+
+.action-btn {
+  background: linear-gradient(90deg,#2c6ff5,#6f3be6);
+  color: white;
+}
+
+.action-btn-outline {
+  background: transparent;
+  color: #eae6ff;
+  padding: .45rem .85rem;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.action-btn-danger {
+  background: linear-gradient(90deg,#ff5c7a,#ff6f5c);
+  color: white;
+}
+
+.action-btn:hover,
+.action-btn-outline:hover,
+.action-btn-danger:hover {
+  filter: brightness(1.05);
+  transform: translateY(-2px);
+}
+
+/* Contenedor base de la alerta */
+.alert {
+    position: relative;
+    padding: 1rem;
+    padding-right: 3rem; /* Espacio para el botón de cerrar */
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between; /* Alinea texto y botón */
+    align-items: center;
+    max-width: 980px; /* Limita el ancho */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Estilos de colores */
+.alert-success {
+    background: #28a745; 
+    color: #fff;
+}
+.alert-danger {
+    background: #dc3545; 
+    color: #fff;
+}
+.alert-warning {
+    background: #ffc107; 
+    color: #212529;
+}
+
+/* Botón de cerrar (la 'X') */
+.alert-close-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.75rem 1rem;
+    background: transparent;
+    border: none;
+    color: inherit; /* Hereda el color (blanco o negro) */
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+    opacity: 0.7;
+}
+.alert-close-btn:hover {
+    opacity: 1;
+}
+
+/* Estilos para la vista de Cita Activa */
+.cita-activa-card {
+    max-width: 550px;
+    margin: 0 auto;
+    background: linear-gradient(180deg, rgba(5,2,39,0.95) 0%, rgba(10,6,60,0.95) 100%);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+    color: #fff;
+}
+
+.cita-activa-card h3 {
+    border-bottom: 2px solid #6f3be6;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.cita-activa-card .detalle-grupo {
+    margin-bottom: 1rem;
+}
+
+.cita-activa-card .detalle-label {
+    display: block;
+    font-weight: 600;
+    color: #dcd6ff;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.cita-activa-card .detalle-valor {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    background-color: rgba(0,0,0,0.25);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1rem;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.detalle-valor.estado-solicitada {
+    background-color: rgba(161, 98, 7, 0.4);
+    border-color: rgba(161, 98, 7, 0.8);
+    color: #fcd34d;
+}
+.detalle-valor.estado-confirmada {
+    background-color: rgba(22, 163, 74, 0.4);
+    border-color: rgba(22, 163, 74, 0.8);
+    color: #86efac;
+}
+
+/* Esto apunta directamente al ícono del calendario que
+  Chrome/Edge/Safari ponen dentro del <input>
+*/
+.form-agendar .input[type="date"]::-webkit-calendar-picker-indicator {
+    
+    /* 1. filter: invert(1) -> Convierte el ícono (negro) a blanco.
+      2. opacity(0.7) -> Lo hace 70% opaco (gris claro), 
+    */
+    filter: invert(1) opacity(1);
+    
+    /* Hacemos que muestre la manito para que se sienta clickeable */
+    cursor: pointer;
+}
+
+/* Opcional: Esto ayuda a Firefox a mostrar un ícono
+  más claro, ya que no usa el 'filter' de la misma forma.
+*/
+/*.form-agendar .input[type="date"] {
+    color-scheme: dark;
+}*/

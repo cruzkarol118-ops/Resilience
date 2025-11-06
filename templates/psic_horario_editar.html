@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='mas/Resilience 1.png') }}" type="image/x-icon">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='psic_horario_editar.css') }}">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <title>Editar Horario — RESILIENCE</title>
+</head>
+<body>
+    <main class="main">
+        <section class="section container" style="padding-top:6rem; padding-bottom:4rem;">
+            
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                {% for category, message in messages %}
+                  <div class="alert alert-{{ category }}">
+                    <span>{{ message }}</span>
+                    <button class="alert-close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+                  </div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+
+            <h2 class="sectiontitle">Ajuste de Horario</h2>
+            <p style="text-align:center; max-width:800px; margin:0 auto 2rem;">
+                Modifica el bloque de horario con ID: **{{ horario.ID_Horario }}**.
+            </p>
+
+            <form class="form-horario" action="{{ url_for('psic_editar_horario', id_horario=horario.ID_Horario) }}" method="POST">
+                
+                <h3><i class="fas fa-pencil-alt"></i> Editar Bloque</h3>
+                <small style="display: block; margin-top: -1rem; margin-bottom: 1rem; color: #bfb8ff;">Recuerda que modificar un bloque afecta a la disponibilidad futura.</small>
+                
+                <div class="form-group">
+                    <label for="periodo_academico">Periodo Académico*</label>
+                    <input type="text" id="periodo_academico" name="periodo_academico" class="input" required 
+                           value="{{ horario.Periodo_Academico }}" placeholder="Ej: 2025-1">
+                </div>
+
+                <div class="form-group">
+                    <label for="dia_semana">Día de la Semana*</label>
+                    <select id="dia_semana" name="dia_semana" class="select" required>
+                        <option value="">-- Selecciona el Día --</option>
+                        {% for dia in dias %}
+                            <option value="{{ dia }}" {% if dia == horario.Dia_Semana %}selected{% endif %}>{{ dia }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group group-inline">
+                    <div>
+                        <label for="hora_inicio">Hora de Inicio*</label>
+                        <input type="time" id="hora_inicio" name="hora_inicio" class="input" required 
+                               value="{{ horario.Hora_Inicio }}">
+                    </div>
+                    <div>
+                        <label for="hora_fin">Hora de Fin*</label>
+                        <input type="time" id="hora_fin" name="hora_fin" class="input" required
+                               value="{{ horario.Hora_Fin }}">
+                    </div>
+                </div>
+
+                <div class="module-actions" style="margin-top: 2rem;">
+                    <button type="submit" class="btn action-btn" style="flex: 1;">
+                        <i class="fas fa-save"></i> Guardar Cambios
+                    </button>
+                    <a class="btn action-btn-outline" href="{{ url_for('psic_ver_horario') }}" style="flex: 1; background: #555;">
+                        <i class="fas fa-arrow-left"></i> Volver a la Gestión
+                    </a>
+                </div>
+            </form>
+            
+            <form action="{{ url_for('psic_eliminar_horario', id_horario=horario.ID_Horario) }}" method="POST" 
+                  onsubmit="return confirm('¿Estás seguro de que deseas ELIMINAR este bloque de horario? Esta acción es irreversible y afectará la disponibilidad.');"
+                  class="form-horario" style="margin-top: 1rem; padding-top: 1rem; padding-bottom: 1rem;">
+                <div class="module-actions">
+                    <button type="submit" class="btn action-btn-danger" style="width: 100%;">
+                        <i class="fas fa-trash-alt"></i> Eliminar Bloque
+                    </button>
+                </div>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='mas/Resilience 1.png') }}" type="image/x-icon">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='psic_editar_cita_detalle.css') }}">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <title>Editar Detalles Cita — RESILIENCE</title>
+</head>
+<body>
+    <main class="main">
+        <section class="section container" style="padding-top:6rem; padding-bottom:4rem;">
+            
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                {% for category, message in messages %}
+                  <div class="alert alert-{{ category }}">
+                    <span>{{ message }}</span>
+                    <button class="alert-close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+                  </div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+
+            <h2 class="sectiontitle">Editar Detalles de Cita</h2>
+            <p style="text-align:center; max-width:800px; margin:0 auto 2rem;">
+                Cita con: <strong>{{ cita.Estudiante_Nombres }} {{ cita.Estudiante_Apellidos }}</strong>
+                <br>
+                Fecha: {{ cita.Fecha_Formateada }} ({{ cita.Hora_Formateada }})
+            </p>
+
+            <form class="form-detalle-cita" action="{{ url_for('psic_editar_cita_detalle', id_cita=cita.ID_Cita) }}" method="POST">
+                
+                <h3><i class="fas fa-map-marker-alt"></i> Actualizar Ubicación</h3>
+                
+                <div class="form-group">
+                    <label for="nota_ubicacion">Ubicación de la Cita*</label>
+                    <input type="text" id="nota_ubicacion" name="nota_ubicacion" class="input" required 
+                           value="{{ cita.Nota_Ubicacion }}" placeholder="Ej: Consultorio 1, Sede 4">
+                </div>
+
+                <div class="module-actions" style="margin-top: 2rem;">
+                    <button type="submit" class="btn action-btn" style="flex: 1;">
+                        <i class="fas fa-save"></i> Guardar Cambios
+                    </button>
+                    <a class="btn action-btn-outline" href="{{ url_for('psic_gestionar_citas') }}" style="flex: 1; background: #555;">
+                        <i class="fas fa-arrow-left"></i> Volver a Gestión
+                    </a>
+                </div>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

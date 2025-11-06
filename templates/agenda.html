@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='mas/Resilience 1.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='agenda.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <title>Agenda — RESILIENCE</title>
+  </head>
+  <body>
+    {% if session.usuario %}
+    <div class="alert alert-success" style="text-align: center; margin-bottom: 0;">
+        Bienvenido/a, <strong>{{ session.usuario.nombres }}</strong>
+    </div>
+    {% endif %}
+
+    <header class="header" id="header">
+      <nav class="nav container">
+        <a href="#" class="navL">
+          <img src="{{ url_for('static', filename='mas/Libro.png') }}" alt="logo" class="navL-img" />
+          <strong>SUPPORT</strong>
+        </a>
+
+        <div class="navM" id="nav-menu">
+          <ul class="navList">
+            <li class="navItem">
+              <a href="{{ url_for('Masculino') }}" class="navLink">Inicio</a>
+            </li>
+            <li class="navItem">
+              <a href="{{ url_for('Masculino') }}#about" class="navLink">Nosotros</a>
+            </li>
+            <li class="navItem">
+              <a href="{{ url_for('Masculino') }}#product" class="navLink">Contextualizate</a>
+            </li>
+            <li class="navItem">
+              <a href="{{ url_for('Masculino') }}#new" class="navLink">Recomendaciones</a>  
+            </li>
+            <li class="navItem">
+              <a href="{{ url_for('agenda') }}" class="navLink active-link">Agenda</a>  
+            </li>
+            {% if session.usuario %}
+            <li class="navItem session-item">
+              <a href="{{ url_for('mis_resultados') }}" class="navLink">
+                  <i class="fas fa-user"></i> {{ session.usuario.nombres }}
+              </a>
+            </li>
+            <li class="navItem session-item">
+              <a href="{{ url_for('logout') }}" class="navLink">
+                <i class="fas fa-sign-out-alt"></i> Salir
+              </a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+
+        <div class="navToggle" id="nav-toggle">
+          <i class="bx bx-menu"></i>
+        </div>
+      </nav>
+    </header>
+
+    <main class="main">
+      <section class="section container" style="padding-top:6rem; padding-bottom:4rem;">
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }}">
+                <span>{{ message }}</span>
+                <button class="alert-close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <h2 class="sectiontitle">Módulos de Agenda</h2>
+        <p style="text-align:center; max-width:800px; margin:0 auto 2rem;">
+          Elija un módulo para gestionar citas.
+        </p>
+
+        <div class="agenda-container">
+          {% if rol_usuario == 'Estudiante' %}
+          <article class="module-card">
+              <div class="module-head">
+                <i class="fas fa-user-graduate module-icon"></i>
+                <h3>Estudiante</h3>
+              </div>
+              <p class="module-desc">Agendar citas, ver tus citas, editar o cancelar desde la misma pantalla.</p>
+              <div class="module-actions">
+                <a class="btn action-btn" href="{{ url_for('est_agendar') }}">Agendar Cita</a>
+                
+                <a class="btn action-btn-outline" href="{{ url_for('est_ver_o_editar') }}">Ver Cita Activa</a>
+              </div>
+          </article>
+
+          {% elif rol_usuario == 'Psicologo' %}
+          <article class="module-card">
+              <div class="module-head">
+                <i class="fas fa-user-md module-icon"></i>
+                <h3>Mi Disponibilidad</h3>
+              </div>
+              <p class="module-desc">Registrar disponibilidad y gestionar los bloques de horarios de tu agenda.</p>
+              <div class="module-actions">
+                <a class="btn action-btn" href="{{ url_for('psic_registrar_horario') }}">Registrar horario</a>
+                <a class="btn action-btn-outline" href="{{ url_for('psic_ver_horario') }}">Ver / Editar horario</a>
+              </div>
+          </article>
+          <article class="module-card">
+              <div class="module-head">
+                <i class="fas fa-calendar-check module-icon"></i>
+                <h3>Mis Citas</h3>
+              </div>
+              <p class="module-desc">Ver y gestionar las citas solicitadas por los estudiantes (Confirmar, Realizar o Cancelar).</p>
+              <div class="module-actions">
+                <a class="btn action-btn" href="{{ url_for('psic_gestionar_citas') }}">Gestionar Citas</a>
+              </div>
+          </article>
+
+          {% elif rol_usuario == 'Admin' %}
+          <article class="module-card">
+              <div class="module-head">
+                <i class="fas fa-user-shield module-icon"></i>
+                <h3>Administrador</h3>
+              </div>
+              <p class="module-desc">Asignar roles de 'Psicólogo' a los usuarios 'Estudiante' registrados en el sistema.</p>
+              <div class="module-actions">
+                <a class="btn action-btn" href="{{ url_for('admin_roles') }}">Gestionar Roles</a>
+              </div>
+          </article>
+          <article class="module-card">
+              <div class="module-head">
+                  <i class="fas fa-chart-bar module-icon"></i>
+                  <h3>Reporte de Desempeño</h3>
+              </div>
+              <p class="module-desc">Ver historial de citas y calificaciones de estudiantes para medir el desempeño.</p>
+              <div class="module-actions">
+                  <a class="btn action-btn" href="{{ url_for('admin_historial_estudiantes') }}">Ver Historiales</a>
+              </div>
+          </article>
+          {% else %}
+          <p style="text-align: center; color: #fff;">Su rol no tiene acceso a esta sección de la agenda o su rol no está definido.</p>
+          {% endif %}
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-light text-dark pt-4 pb-4" style="margin-top:2rem;">
+      
+    </footer>
+  </body>
+</html>

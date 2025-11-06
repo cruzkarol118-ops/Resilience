@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='mas/Resilience 1.png') }}" type="image/x-icon">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='psic_horario_registro.css') }}">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <title>Registrar Horario — RESILIENCE</title>
+</head>
+<body>
+    <main class="main">
+        <section class="section container" style="padding-top:6rem; padding-bottom:4rem;">
+            
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                {% for category, message in messages %}
+                  <div class="alert alert-{{ category }}">
+                    <span>{{ message }}</span>
+                    <button class="alert-close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+                  </div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+
+            <h2 class="sectiontitle">Registro de Horario (Psicólogo)</h2>
+            <p style="text-align:center; max-width:800px; margin:0 auto 2rem;">
+                Define un nuevo bloque de tiempo de tu disponibilidad (ej. Lunes de 09:00 a 12:00).
+            </p>
+
+            <form class="form-horario" id="form-registro-horario" action="{{ url_for('psic_registrar_horario') }}" method="POST">
+                
+                <h3><i class="fas fa-calendar-plus"></i> Nuevo Bloque</h3>
+                
+                <div class="form-group">
+                    <label for="periodo_academico">Periodo Académico*</label>
+                    <input type="text" id="periodo_academico" name="periodo_academico" class="input" required 
+                           value="{{ periodo_default }}" placeholder="Ej: 2025-1">
+                </div>
+
+                <div class="form-group">
+                    <label for="dia_semana">Día de la Semana*</label>
+                    <select id="dia_semana" name="dia_semana" class="select" required>
+                        <option value="">-- Selecciona el Día --</option>
+                        {% for dia in dias %}
+                            <option value="{{ dia }}">{{ dia }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group group-inline">
+                    <div>
+                        <label for="hora_inicio">Hora de Inicio*</label>
+                        <input type="time" id="hora_inicio" name="hora_inicio" class="input" required>
+                    </div>
+                    <div>
+                        <label for="hora_fin">Hora de Fin*</label>
+                        <input type="time" id="hora_fin" name="hora_fin" class="input" required>
+                    </div>
+                </div>
+
+                <div class="module-actions" style="margin-top: 2rem;">
+                    <a class="btn action-btn-outline" href="{{ url_for('agenda') }}" style="flex: 1; background: #555;">
+                        <i class="fas fa-arrow-left"></i> Cancelar / Volver
+                    </a>
+                    <a class="btn action-btn-outline action-gestion" href="{{ url_for('psic_ver_horario') }}" style="flex: 1;">
+                        <i class="fas fa-list"></i> Ver/Gestionar Horarios
+                    </a>
+                </div>
+            </form>
+
+            <form action="{{ url_for('psic_registrar_horario') }}" method="POST" 
+                  class="form-horario form-actions-box" style="margin-top: 1rem; padding-top: 1rem; padding-bottom: 1rem;">
+                
+                <input type="hidden" name="periodo_academico" id="hidden_periodo">
+                <input type="hidden" name="dia_semana" id="hidden_dia">
+                <input type="hidden" name="hora_inicio" id="hidden_inicio">
+                <input type="hidden" name="hora_fin" id="hidden_fin">
+
+                <div class="module-actions">
+                    <button type="submit" class="btn action-btn action-guardar-box" style="width: 100%;">
+                        <i class="fas fa-save"></i> Guardar Horario
+                    </button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const formRegistro = document.getElementById('form-registro-horario');
+            const formActionBox = document.querySelector('.form-actions-box');
+            
+            // Función para sincronizar datos del formulario principal con los campos ocultos
+            function syncFormInputs() {
+                document.getElementById('hidden_periodo').value = document.getElementById('periodo_academico').value;
+                document.getElementById('hidden_dia').value = document.getElementById('dia_semana').value;
+                document.getElementById('hidden_inicio').value = document.getElementById('hora_inicio').value;
+                document.getElementById('hidden_fin').value = document.getElementById('hora_fin').value;
+            }
+
+            // Sincronizar en cada cambio en el formulario principal
+            formRegistro.addEventListener('change', syncFormInputs);
+            formRegistro.addEventListener('input', syncFormInputs);
+            
+            // Sincronizar inmediatamente al cargar la página (por si hay valores por defecto)
+            syncFormInputs();
+            
+            // Detener el submit del formulario principal y usar el submit del form-actions-box
+            formRegistro.addEventListener('submit', function(e) {
+                e.preventDefault(); 
+                // La acción de guardar se realiza al hacer clic en el botón del form-actions-box
+            });
+            
+            formActionBox.querySelector('button[type="submit"]').addEventListener('click', function(e) {
+                // Verificar que los campos principales no estén vacíos antes de enviar
+                if (!document.getElementById('periodo_academico').value ||
+                    !document.getElementById('dia_semana').value ||
+                    !document.getElementById('hora_inicio').value ||
+                    !document.getElementById('hora_fin').value) {
+                    
+                    e.preventDefault();
+                    alert('Por favor, complete todos los campos obligatorios del horario antes de guardar.');
+                } else {
+                    // Si todo está lleno, el submit del formActionBox continúa
+                    formActionBox.submit();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

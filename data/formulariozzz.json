@@ -1,0 +1,498 @@
+{
+  "formularios": [
+    {
+      "id": "ansiedad_adolescentes",
+      "slug": "test-ansiedad-adolescentes",
+      "titulo": "Test de Diagnóstico de Ansiedad para Adolescentes",
+      "descripcion": "Cuestionario para evaluar posibles síntomas de ansiedad en adolescentes",
+      "preguntas": [
+        {
+          "id": 1,
+          "pregunta": "¿Sientes frecuentemente inquietud o nerviosismo?",
+          "opciones": [
+            "Sí muy a menudo",
+            "Sí pero no es frecuente",
+            "No nunca"
+          ]
+        },
+        {
+          "id": 2,
+          "pregunta": "¿Tienes dificultades para mantener la concentración o tu mente se queda en blanco?",
+          "opciones": [
+            "Sí muy a menudo",
+            "Sí pero no es frecuente",
+            "No nunca"
+          ]
+        },
+        {
+          "id": 3,
+          "pregunta": "¿Te cansas o fatigas con facilidad?",
+          "opciones": [
+            "Sí muy a menudo",
+            "Sí pero no es frecuente",
+            "No nunca"
+          ]
+        },
+        {
+          "id": 4,
+          "pregunta": "¿Experimentas irritabilidad o dificultades para controlar sentimientos de preocupación?",
+          "opciones": [
+            "Sí muy a menudo",
+            "Sí pero no es frecuente",
+            "No nunca"
+          ]
+        },
+        {
+          "id": 5,
+          "pregunta": "¿Tienes tensión muscular o síntomas físicos como dolores de cabeza o de estómago?",
+          "opciones": [
+            "Sí muy a menudo",
+            "Sí pero no es frecuente",
+            "No nunca"
+          ]
+        },
+        {
+          "id": 6,
+          "pregunta": "¿Tienes dificultades para conciliar el sueño o mantenerlo, o experimentas un sueño inquieto e insatisfactorio?",
+          "opciones": [
+            "Sí muy a menudo",
+            "Sí pero no es frecuente",
+            "No nunca"
+          ]
+        },
+        {
+          "id": 7,
+          "pregunta": "¿Sientes una preocupación o miedo excesivo sobre situaciones reales o imaginarias?",
+          "opciones": [
+            "Sí muy a menudo",
+            "Sí pero no es frecuente",
+            "No nunca"
+          ]
+        },
+        {
+          "id": 8,
+          "pregunta": "¿Evitas realizar ciertas actividades o visitar ciertos lugares por la ansiedad que te producen?",
+          "opciones": [
+            "Sí muy a menudo",
+            "Sí pero no es frecuente",
+            "No nunca"
+          ]
+        },
+        {
+          "id": 9,
+          "pregunta": "¿Tienes ataques de pánico repentinos e inesperados acompañados de síntomas como palpitaciones, sudoración o temblores?",
+          "opciones": [
+            "Sí muy a menudo",
+            "Sí pero no es frecuente",
+            "No nunca"
+          ]
+        },
+        {
+          "id": 10,
+          "pregunta": "¿Tienes pensamientos o acciones que se presentan de forma invasiva y sientes la necesidad de llevarlos a cabo?",
+          "opciones": [
+            "Sí muy a menudo",
+            "Sí pero no es frecuente",
+            "No nunca"
+          ]
+        },
+        {
+          "id": 11,
+          "pregunta": "Correo electrónico*",
+          "tipo": "texto_libre"
+        }
+      ]
+    },
+    {
+      "id": "bipolaridad",
+      "slug": "diagnostico-bipolaridad",
+      "titulo": "Diagnóstico Inicial de Bipolaridad",
+      "descripcion": "Evaluación inicial de posibles síntomas bipolares",
+      "preguntas": [
+        {
+          "id": 1,
+          "pregunta": "Describe los síntomas que has estado experimentando.",
+          "tipo": "texto_libre"
+        },
+        {
+          "id": 2,
+          "pregunta": "¿Con qué frecuencia has sufrido cambios de humor drásticos?",
+          "opciones": [
+            "A menudo",
+            "Siempre",
+            "Muy poco",
+            "Nunca"
+          ]
+        },
+        {
+          "id": 3,
+          "pregunta": "¿Por cuánto tiempo se mantienen estos cambios emocionales?",
+          "opciones": [
+            "A menudo",
+            "Siempre",
+            "Muy poco",
+            "Nunca"
+          ]
+        },
+        {
+          "id": 4,
+          "pregunta": "¿Has experimentado pensamientos velozes o acelerados cuando tu estado de ánimo cambia?",
+          "opciones": [
+            "A menudo",
+            "Siempre",
+            "Muy poco",
+            "Nunca"
+          ]
+        },
+        {
+          "id": 5,
+          "pregunta": "¿Te has enfrentado a problemas para mantener la concentración o conciliar el sueño durante los cambios de humor?",
+          "opciones": [
+            "A menudo",
+            "Siempre",
+            "Muy poco",
+            "Nunca"
+          ]
+        },
+        {
+          "id": 6,
+          "pregunta": "¿Has tenido tendencias impulsivas o acciones peligrosas durante tus variaciones de humor?",
+          "opciones": [
+            "A menudo",
+            "Siempre",
+            "Muy poco",
+            "Nunca"
+          ]
+        },
+        {
+          "id": 7,
+          "pregunta": "¿Se han preocupado tus amigos o familiares por tus cambios de humor?",
+          "opciones": [
+            "A menudo",
+            "Siempre",
+            "Muy poco",
+            "Nunca"
+          ]
+        },
+        {
+          "id": 8,
+          "pregunta": "Correo electrónico*",
+          "tipo": "texto_libre"
+        }
+      ]
+    },
+    {
+      "id": "depresion_adolescentes",
+      "slug": "diagnostico-depresion-adolescentes",
+      "titulo": "Diagnóstico Inicial de la Depresión para Adolescentes",
+      "descripcion": "Evaluación de síntomas depresivos en población adolescente",
+      "preguntas": [
+        {
+          "id": 1,
+          "pregunta": "Mi estado de ánimo en las últimas dos semanas ha sido de tristeza, depresión o desesperanza.",
+          "opciones": [
+            "A menudo",
+            "Siempre",
+            "Muy poco",
+            "Nunca"
+          ]
+        },
+        {
+          "id": 2,
+          "pregunta": "He dejado de encontrar satisfacción en las actividades que antes me gustaban.",
+          "opciones": [
+            "Sí",
+            "No"
+          ]
+        },
+        {
+          "id": 3,
+          "pregunta": "He tenido cambios significativos en el apetito o el peso (por ejemplo, aumento o pérdida de peso sin querer).",
+          "opciones": [
+            "Sí",
+            "No"
+          ]
+        },
+        {
+          "id": 4,
+          "pregunta": "He tenido problemas para dormir o he dormido demasiado.",
+          "opciones": [
+            "Sí",
+            "No"
+          ]
+        },
+        {
+          "id": 5,
+          "pregunta": "Me he sentido inquieto o agitado, o me he sentido lento y sin energía.",
+          "opciones": [
+            "Sí",
+            "No"
+          ]
+        },
+        {
+          "id": 6,
+          "pregunta": "Me he sentido cansado o sin energía.",
+          "opciones": [
+            "A menudo",
+            "Siempre",
+            "Muy poco",
+            "Nunca"
+          ]
+        },
+        {
+          "id": 7,
+          "pregunta": "Correo electrónico*",
+          "tipo": "texto_libre"
+        }
+      ]
+    },
+    {
+      "id": "hiperactividad",
+      "slug": "diagnostico-hiperactividad",
+      "titulo": "Diagnóstico Inicial de Hiperactividad",
+      "descripcion": "Evaluación de posibles síntomas de TDAH en adolescentes",
+      "preguntas": [
+        {
+          "id": 1,
+          "pregunta": "¿Con qué frecuencia presenta tu adolescente dificultad para prestar atención o concentrarse en tareas o actividades?",
+          "opciones": [
+            "Casi nunca o nunca",
+            "En algunas ocasiones",
+            "A menudo",
+            "Casi siempre o siempre"
+          ]
+        },
+        {
+          "id": 2,
+          "pregunta": "¿Con qué frecuencia se distrae tu adolescente fácilmente?",
+          "opciones": [
+            "Casi nunca o nunca",
+            "En algunas ocasiones",
+            "A menudo",
+            "Casi siempre o siempre"
+          ]
+        },
+        {
+          "id": 3,
+          "pregunta": "¿Con qué frecuencia muestra tu adolescente inquietud o se retuerce en su asiento?",
+          "opciones": [
+            "Casi nunca o nunca",
+            "En algunas ocasiones",
+            "A menudo",
+            "Casi siempre o siempre"
+          ]
+        },
+        {
+          "id": 4,
+          "pregunta": "¿Con qué frecuencia tiene tu adolescente dificultades para esperar su turno?",
+          "opciones": [
+            "Casi nunca o nunca",
+            "En algunas ocasiones",
+            "A menudo",
+            "Casi siempre o siempre"
+          ]
+        },
+        {
+          "id": 5,
+          "pregunta": "¿Con qué frecuencia interrumpe o se entromete tu adolescente en las conversaciones o actividades de otros?",
+          "opciones": [
+            "Casi nunca o nunca",
+            "En algunas ocasiones",
+            "A menudo",
+            "Casi siempre o siempre"
+          ]
+        },
+        {
+          "id": 6,
+          "pregunta": "¿Con qué frecuencia se levanta tu adolescente de su asiento en situaciones en las que se espera que permanezca sentado?",
+          "opciones": [
+            "Casi nunca o nunca",
+            "En algunas ocasiones",
+            "A menudo",
+            "Casi siempre o siempre"
+          ]
+        },
+        {
+          "id": 7,
+          "pregunta": "¿Con qué frecuencia corre o trepa tu adolescente en situaciones inapropiadas?",
+          "opciones": [
+            "Casi nunca o nunca",
+            "En algunas ocasiones",
+            "A menudo",
+            "Casi siempre o siempre"
+          ]
+        },
+        {
+          "id": 8,
+          "pregunta": "¿Con qué frecuencia tiene tu adolescente dificultades para jugar o participar en actividades silenciosas?",
+          "opciones": [
+            "Casi nunca o nunca",
+            "En algunas ocasiones",
+            "A menudo",
+            "Casi siempre o siempre"
+          ]
+        },
+        {
+          "id": 9,
+          "pregunta": "Correo electrónico*",
+          "tipo": "texto_libre"
+        }
+      ]
+    },
+    {
+      "id": "adicciones",
+      "slug": "diagnostico-adicciones-adolescentes",
+      "titulo": "Diagnóstico Inicial de Adicciones en Adolescentes",
+      "descripcion": "Evaluación de posibles conductas adictivas a sustancias",
+      "preguntas": [
+        {
+          "id": 1,
+          "pregunta": "¿Has consumido alcohol o drogas en los últimos 30 días?",
+          "opciones": [
+            "Sí",
+            "No"
+          ]
+        },
+        {
+          "id": 2,
+          "pregunta": "¿Alguna vez has consumido alcohol o drogas en exceso (más de lo que pretendías)?",
+          "opciones": [
+            "Sí",
+            "No"
+          ]
+        },
+        {
+          "id": 3,
+          "pregunta": "¿Has intentado dejar de consumir alcohol o drogas, pero no has podido?",
+          "opciones": [
+            "Sí",
+            "No"
+          ]
+        },
+        {
+          "id": 4,
+          "pregunta": "¿Sigues consumiendo alcohol o drogas a pesar de las consecuencias negativas?",
+          "opciones": [
+            "Sí",
+            "No"
+          ]
+        },
+        {
+          "id": 5,
+          "pregunta": "¿Necesitas consumir cada vez más alcohol o drogas para obtener el mismo efecto?",
+          "opciones": [
+            "Sí",
+            "No"
+          ]
+        },
+        {
+          "id": 6,
+          "pregunta": "¿Has descuidado tus responsabilidades (escuela, trabajo, familia) debido al consumo de alcohol o drogas?",
+          "opciones": [
+            "Sí",
+            "No"
+          ]
+        },
+        {
+          "id": 7,
+          "pregunta": "Libera tu mente y corazón al relatar tu vivencia y exponer las razones por las que deseas dejar esta adicción.",
+          "tipo": "texto_libre"
+        },
+        {
+          "id": 8,
+          "pregunta": "Correo electrónico*",
+          "tipo": "texto_libre"
+        }
+      ]
+    },
+    {
+      "id": "insomnio",
+      "slug": "diagnostico-insomnio-adolescentes",
+      "titulo": "Diagnóstico Inicial del Insomnio en Adolescentes",
+      "descripcion": "Evaluación de patrones de sueño y posibles trastornos",
+      "preguntas": [
+        {
+          "id": 1,
+          "pregunta": "¿Tienes dificultades para conciliar el sueño la mayoría de las noches?",
+          "opciones": [
+            "Nunca",
+            "Rara vez",
+            "A veces",
+            "Casi siempre"
+          ]
+        },
+        {
+          "id": 2,
+          "pregunta": "¿Te despiertas por la noche y tienes problemas para volver a dormir?",
+          "opciones": [
+            "Nunca",
+            "Rara vez",
+            "A veces",
+            "Casi siempre"
+          ]
+        },
+        {
+          "id": 3,
+          "pregunta": "¿Te despiertas demasiado temprano por la mañana y no puedes volver a dormir?",
+          "opciones": [
+            "Nunca",
+            "Rara vez",
+            "A veces",
+            "Casi siempre"
+          ]
+        },
+        {
+          "id": 4,
+          "pregunta": "¿Cuánto tiempo tardas normalmente en conciliar el sueño?",
+          "opciones": [
+            "Menos de 15 minutos",
+            "Entre 15 y 30 minutos",
+            "Entre 30 minutos y una hora",
+            "Más de una hora"
+          ]
+        },
+        {
+          "id": 5,
+          "pregunta": "¿Cuánto tiempo permaneces despierto si te levantas temprano?",
+          "opciones": [
+            "Menos de 15 minutos",
+            "Entre 15 y 30 minutos",
+            "Entre 30 minutos y una hora",
+            "Más de una hora"
+          ]
+        },
+        {
+          "id": 6,
+          "pregunta": "¿Utilizas algún tipo de medicamento o infusión para dormir?",
+          "opciones": [
+            "Menos de 15 minutos",
+            "Entre 15 y 30 minutos",
+            "Entre 30 minutos y una hora",
+            "Más de una hora"
+          ]
+        },
+        {
+          "id": 7,
+          "pregunta": "Puedes tomar una siesta cuando tienes tiempo disponible",
+          "opciones": [
+            "Sí",
+            "No"
+          ]
+        },
+        {
+          "id": 8,
+          "pregunta": "¿Has notado que tus ojeras están más marcadas o que tu cuerpo se expresa de manera diferente cuando no puedes dormir?",
+          "opciones": [
+            "Sí",
+            "No"
+          ]
+        },
+        {
+          "id": 9,
+          "pregunta": "Email*",
+          "tipo": "texto_libre"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+    "usuarios": [
+        {
+            "username": "CesarCelis01",
+            "password": "3172161630",
+            "email": "CesarCelis@example.com",
+            "nombres": "Cesar",
+            "apellidos": "Celis"
+        },
+        {
+            "username": "Fabian2024",
+            "password": "3214311556",
+            "email": "Fabian@example.com",
+            "nombres": "Fabian",
+            "apellidos": ""
+        },
+        {
+            "username": "Brayan0742",
+            "password": "3214730182",
+            "email": "Brayan@example.com",
+            "nombres": "Brayan",
+            "apellidos": ""
+        },
+        {
+            "username": "UsuarioPrueba",
+            "password": "12345",
+            "email": "usuario@example.com",
+            "nombres": "Usuario",
+            "apellidos": ""
+        },
+        {
+            "username": "MariansTherapy",
+            "password": "3115530291",
+            "email": "Marians@example.com",
+            "nombres": "Marians",
+            "apellidos": ""
+        },
+        {
+            "username": "PruebaSujeto1",
+            "password": "123456",
+            "email": "sj1@example.es",
+            "nombres": "Sujeto 1",
+            "apellidos": ""
+        },
+        {
+            "username": "DBTestU",
+            "password": "123456",
+            "email": "dbtest1@hotmail.com",
+            "nombres": "DBTestNzzz",
+            "apellidos": "DBTestLN",
+            "rol": "Estudiante"
+        },
+        {
+            "username": "DBTestU2",
+            "password": "123456",
+            "email": "dbtest2@hotmail.com",
+            "nombres": "DBTestN2",
+            "apellidos": "DBTestLN2",
+            "rol": "Psicologo"
+        },
+        {
+            "username": "DBTestU4",
+            "password": "123456",
+            "email": "dbtest4@hotmail.com",
+            "nombres": "DBTestN4",
+            "apellidos": "DBTestLN4",
+            "rol": "Psicologo"
+        },
+        {
+            "username": "TesterU",
+            "password": "123456789",
+            "email": "tester@hotmail.com",
+            "nombres": "TesterName",
+            "apellidos": "TesterLastName",
+            "rol": "Estudiante"
+        },
+        {
+            "username": "usuario",
+            "password": "123456",
+            "email": "correo@hotmail.com",
+            "nombres": "nombres",
+            "apellidos": "apellidos",
+            "rol": "Estudiante"
+        },
+        {
+            "username": "seguido",
+            "password": "seguido",
+            "email": "seguido@hotmail.com",
+            "nombres": "seguido",
+            "apellidos": "seguido",
+            "rol": "Estudiante"
+        },
+        {
+            "username": "JuanPerez01",
+            "password": "123456",
+            "email": "juanperez01@hotmail.com",
+            "nombres": "Juan",
+            "apellidos": "P\u00e9rez",
+            "cedula": "1090123456",
+            "rol": "Estudiante"
+        }
+    ]
+}

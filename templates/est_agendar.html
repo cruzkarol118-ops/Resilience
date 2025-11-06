@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='mas/Resilience 1.png') }}" type="image/x-icon">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='est_agendar.css') }}">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <title>Agendar Cita — RESILIENCE</title>
+</head>
+<body>
+    <main class="main">
+        <section class="section container" style="padding-top:6rem; padding-bottom:4rem;">
+            
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                {% for category, message in messages %}
+                  <div class="alert alert-{{ category }}">
+                    <span>{{ message }}</span>
+                    <button class="alert-close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+                  </div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+
+
+            {% if active_cita %}
+                
+                <h2 class="sectiontitle">Detalles de tu Cita Activa</h2>
+                
+                <div class="cita-activa-card"> 
+                    <h3><i class="fas fa-calendar-check"></i> Tu Cita Programada</h3>
+
+                    <div class="detalle-grupo">
+                        <span class="detalle-label">Estado</span>
+                        <span class="detalle-valor {% if active_cita.Estado_Cita == 'SOLICITADA' %}estado-solicitada{% else %}estado-confirmada{% endif %}">
+                            {{ active_cita.Estado_Cita }}
+                        </span>
+                    </div>
+                    <div class="detalle-grupo">
+                        <span class="detalle-label">Psicólogo/a</span>
+                        <span class="detalle-valor">{{ active_cita.Nombre_Psicologo }}</span>
+                    </div>
+                    <div class="detalle-grupo">
+                        <span class="detalle-label">Fecha</span>
+                        <span class="detalle-valor">{{ active_cita.Fecha_Cita.strftime('%d / %m / %Y') if active_cita.Fecha_Cita else 'N/A' }}</span>
+                    </div>
+                    
+                    <div class="detalle-grupo">
+                        <span class="detalle-label">Hora</span>
+                        <span class="detalle-valor">{{ active_cita.Hora_Cita_Formateada }}</span>
+                    </div>
+
+                    <div class="detalle-grupo">
+                        <span class="detalle-label">Ubicación</span>
+                        <span class="detalle-valor">{{ active_cita.Nota_Ubicacion }}</span>
+                    </div>
+
+                    <form action="{{ url_for('cancelar_cita', id_cita=active_cita.ID_Cita) }}" method="POST" 
+                          onsubmit="return confirm('¿Estás seguro de que deseas cancelar esta cita?');">
+                        <div class="module-actions" style="margin-top: 2rem; display: flex; gap: 1rem;">
+                            <button type="submit" class="btn action-btn-danger" style="flex: 1;">
+                                <i class="fas fa-trash-alt"></i> Cancelar Cita
+                            </button>
+                            <a class="btn action-btn-outline" href="{{ url_for('agenda') }}" style="flex: 1; background: #555;">
+                                Volver
+                            </a>
+                        </div>
+                    </form>
+                </div>
+
+            {% else %}
+
+                <h2 class="sectiontitle">Solicitud de Cita (Estudiante)</h2>
+                <p style="text-align:center; max-width:800px; margin:0 auto 2rem;">
+                    Completa tus datos y selecciona el profesional y el horario deseado.
+                </p>
+
+                <form class="form-agendar" id="form-agendar-cita" action="{{ url_for('est_agendar') }}" method="POST">
+                
+                    <h3><i class="fas fa-user-graduate"></i> Tus Datos Personales</h3>
+                    <small style="display: block; margin-top: -1rem; margin-bottom: 1rem; color: #bfb8ff;">(Completa esta sección. Si ya has agendado, tus datos se actualizarán.)</small>
+                    
+                    <div class="form-group">
+                        <label for="programa">Programa Académico*</label>
+                        <input type="text" id="programa" name="programa" class="input" required
+                               value="{{ estudiante.Programa_Academico if estudiante else '' }}">
+                    </div>
+                    <div class="form-group" style="display: flex; gap: 1rem;">
+                        <div style="flex: 1;">
+                            <label for="semestre">Semestre*</label>
+                            <input type="number" id="semestre" name="semestre" class="input" required min="1" max="12"
+                                   value="{{ estudiante.Semestre if estudiante else '' }}">
+                        </div>
+                        <div style="flex: 2;">
+                            <label for="telefono">Teléfono de Contacto*</label>
+                            <input type="tel" id="telefono" name="telefono" class="input" required
+                                   value="{{ estudiante.Telefono_Contacto if estudiante else '' }}">
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top: 2rem;"><i class="fas fa-calendar-alt"></i> Datos de la Cita</h3>
+
+                    <div class="form-group">
+                        <label for="psicologo">Selecciona un Psicólogo*</label>
+                        <select id="psicologo" name="psicologo" class="select" required>
+                            <option value="">-- Elige un profesional --</option>
+                            {% for psicologo in psicologos %}
+                                <option value="{{ psicologo.ID_Psicologo }}">
+                                    {{ psicologo.Nombre_Completo_Display }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fecha_cita">Selecciona la Fecha*</label>
+                        <input type="date" id="fecha_cita" name="fecha_cita" class="input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Horarios Disponibles para el día seleccionado:</label>
+                        <div id="horarios-disponibles-lista" style="display: flex; flex-wrap: wrap; gap: 0.5rem; min-height: 40px;">
+                            <small id="horarios-loading" style="color: #bfb8ff; display: none;">Buscando horarios...</small>
+                            <small id="horarios-prompt" style="color: #bfb8ff;">Por favor, selecciona un psicólogo y una fecha.</small>
+                        </div>
+                    </div>
+
+                    <input type="hidden" id="id_horario_seleccionado" name="id_horario_seleccionado" value="">
+
+                    <div class="module-actions" style="margin-top: 2rem;">
+                        <button type="submit" class="btn action-btn">
+                            <i class="fas fa-check"></i> Solicitar Cita
+                        </button>
+                        <a class="btn action-btn-outline" href="{{ url_for('agenda') }}" style="background: #555;">
+                            Volver
+                        </a>
+                    </div>
+                </form>
+
+            {% endif %}
+            </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('form-agendar-cita');
+            if (!form) return; 
+
+            
+
+            const psicologoSelect = document.getElementById('psicologo');
+            const fechaInput = document.getElementById('fecha_cita');
+            const horariosContainer = document.getElementById('horarios-disponibles-lista');
+            const hiddenInputHorario = document.getElementById('id_horario_seleccionado');
+            const prompt = document.getElementById('horarios-prompt');
+            const loading = document.getElementById('horarios-loading');
+
+            async function fetchHorarios() {
+                const idPsicologo = psicologoSelect.value;
+                const fecha = fechaInput.value;
+                if (!idPsicologo || !fecha) {
+                    prompt.style.display = 'block';
+                    horariosContainer.innerHTML = ''; 
+                    horariosContainer.appendChild(prompt);
+                    return;
+                }
+                prompt.style.display = 'none';
+                loading.style.display = 'block';
+                horariosContainer.innerHTML = ''; 
+                horariosContainer.appendChild(loading);
+                hiddenInputHorario.value = ''; 
+                try {
+                    const response = await fetch(`/api/horarios/${idPsicologo}/${fecha}`);
+                    if (!response.ok) throw new Error('Error al buscar horarios.');
+                    const bloques = await response.json();
+                    loading.style.display = 'none';
+                    horariosContainer.innerHTML = ''; 
+                    if (bloques.length === 0) {
+                        horariosContainer.innerHTML = '<small style="color: #ffc107;">No hay horarios disponibles para este profesional en la fecha seleccionada.</small>';
+                        return;
+                    }
+                    bloques.forEach(bloque => {
+                        const btn = document.createElement('button');
+                        btn.type = 'button'; 
+                        btn.className = 'btn action-btn-outline'; 
+                        btn.textContent = bloque.texto; 
+                        btn.dataset.idHorario = bloque.id; 
+                        btn.addEventListener('click', function() {
+                            document.querySelectorAll('#horarios-disponibles-lista button').forEach(b => b.style.background = 'transparent');
+                            this.style.background = '#6f3be6';
+                            hiddenInputHorario.value = this.dataset.idHorario;
+                        });
+                        horariosContainer.appendChild(btn);
+                    });
+                } catch (error) {
+                    console.error('Error en fetchHorarios:', error);
+                    loading.style.display = 'none';
+                    horariosContainer.innerHTML = '<small style="color: #dc3545;">Error al cargar horarios. Intente de nuevo.</small>';
+                }
+            }
+            psicologoSelect.addEventListener('change', fetchHorarios);
+            fechaInput.addEventListener('change', fetchHorarios);
+        });
+    </script>
+</body>
+</html>

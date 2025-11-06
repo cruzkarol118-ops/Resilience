@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RESILIENCE</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='mas/Resilience 1.png') }}" type="image/x-icon">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='Melodias.css') }}">
+</head>
+<body>
+
+  <div data-aos="zoom-in"
+  data-aos-duration="3000">
+    <h1><strong class="hercu" style="font-size: 55px; margin-left: 50%" id="melo">MELODIAS</strong></h1>
+  </div>
+  
+  
+    <section>
+      <div class="izquierda">
+            
+        <p>
+          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+            Reducción del Estrés
+          </button>
+        </p>
+        <div style="min-height: 130px;">
+          <div class="collapse collapse-vertical" id="collapseWidthExample">
+            <center>
+            <div class="card card-body" style="width: 255px; font-size: 15px; height: 170px;">
+              Melodías suaves y relajantes, como la música clásica o el jazz, pueden reducir los niveles de estrés y promover la calma, ayudando a relajarse después de un día agitado.
+            </div>
+          </center>
+          </div>
+        </div>
+
+        <br><br>
+        <p>
+          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+            Estimulación de Recuerdos
+          </button>
+        </p>
+        <div style="min-height: 130px;">
+          <div class="collapse collapse-vertical" id="collapseWidthExample">
+            <center>
+            <div class="card card-body" style="width: 255px; height: 150px; text-align:center;">
+              La música tiene el poder de evocar recuerdos y emociones, lo que puede ser terapéutico. Escuchar melodías asociadas a momentos felices
+            </div>
+          </center>
+          </div>
+        </div>
+
+        <br><br>
+        <p>
+          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+            Fomento de la Concentración
+          </button>
+        </p>
+        <div style="min-height: 130px;">
+          <div class="collapse collapse-vertical" id="collapseWidthExample">
+            <center>
+            <div class="card card-body" style="width: 255px; height: 170px;">
+              Algunas melodías, especialmente las instrumentales, pueden ayudar a mejorar la concentración y la productividad, creando un ambiente propicio
+            </div>
+          </center>
+          </div>
+        </div>
+
+        <br><br>
+        <p>
+          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+            Expresión Emocional
+          </button>
+        </p>
+        <div style="min-height: 130px;">
+          <div class="collapse collapse-vertical" id="collapseWidthExample">
+            <center>
+            <div class="card card-body" style="width: 255px; height: 170px; text-align:center;">
+              La música puede ser una forma de expresión emocional. Escuchar melodías que reflejan lo que uno siente puede ayudar a procesar emociones complejas
+            </div>
+          </center>
+          </div>
+        </div>
+
+        <br><br>
+        <p>
+          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+            Terapia Musical
+          </button>
+        </p>
+        <div style="min-height: 130px;">
+          <div class="collapse collapse-vertical" id="collapseWidthExample">
+            <center>
+            <div class="card card-body" style="width: 255px; height: 170px;">
+              La musicoterapia utiliza melodías y ritmos para ayudar a las personas a mejorar su salud mental y emocional. Participar en estas sesiones puede ser una forma efectiva
+            </div>
+          </center>
+          </div>
+        </div>
+        
+
+        
+
+        
+
+    </div>
+
+    <div class="derecha">
+       
+      <br><br>
+      
+        <h3 style="margin-right: 700px; font-size: 10px;"><strong class="hercu"></strong></h3>
+      
+      
+      
+
+        <div class="cajagrande">
+
+         
+
+          <div class="card" style="width: 17rem;height: 20rem; background: #cb6bf7">
+            <img src="{{ url_for('static', filename='mas/img melodias/13.jpeg') }}" class="card-img-top" alt="Melodía" style="width: 270px; height: auto; max-height: 250px; object-fit: cover;">
+
+            <div class="card-body">
+              <audio src="{{ url_for('static', filename='mas/music melodias/1.mp3') }}" controls style="height: 40px; margin-left: -6px; width: 250px;"></audio>
+
+            </div>
+          </div>
+          
+
+          
+
+          <div class="card" style="width: 17rem;height: 20rem; background: #cb6bf7">
+            <img src="{{ url_for('static', filename='mas/img melodias/12.jpeg') }}" class="card-img-top" alt="Melodía" style="width: 270px; height: auto; max-height: 250px; object-fit: cover;">
+            <div class="card-body">
+              <audio src="{{ url_for('static', filename='mas/music melodias/2.mp3') }}" controls style="height: 40px; margin-left: -6px; width: 250px;"></audio>
+            </div>
+          </div>
+          
+
+          <div class="card" style="width: 17rem;height: 20rem; background: #cb6bf7">
+            <img src="{{ url_for('static', filename='mas/img melodias/11.jpeg') }}" class="card-img-top" alt="Melodía" style="width: 270px; height: auto; max-height: 250px; object-fit: cover;">
+            <div class="card-body">
+              <audio src="{{ url_for('static', filename='mas/music melodias/3.mp3') }}" controls style="height: 40px; margin-left: -6px; width: 250px;"></audio>
+            </div>
+          </div>
+          
+
+      </div>
+
+
+      <br><br><br><br><br>
+
+      <div class="cajagran">
+
+
+        <div class="card" style="width: 17rem;height: 20rem; background: #cb6bf7">
+          <img src="{{ url_for('static', filename='mas/img melodias/4.jpeg') }}" class="card-img-top" alt="Melodía" style="width: 270px; height: auto; max-height: 250px; object-fit: cover;">
+          <div class="card-body">
+            <audio src="{{ url_for('static', filename='mas/music melodias/4.mp3') }}" controls style="height: 40px; margin-left: -6px; width: 250px;"></audio>
+          </div>
+        </div>
+        
+
+        <div class="card" style="width: 17rem;height: 20rem; background: #cb6bf7">
+          <img src="{{ url_for('static', filename='mas/img melodias/5.jpeg') }}" class="card-img-top" alt="Melodía" style="width: 270px; height: auto; max-height: 250px; object-fit: cover;">
+          <div class="card-body">
+            <audio src="{{ url_for('static', filename='mas/music melodias/5.mp3') }}" controls style="height: 40px; margin-left: -6px; width: 250px;"></audio>
+          </div>
+        </div>
+        
+
+
+        <div class="card" style="width: 17rem;height: 20rem; background: #cb6bf7">
+          <img src="{{ url_for('static', filename='mas/img melodias/6.jpeg') }}" class="card-img-top" alt="Melodía" style="width: 270px; height: auto; max-height: 250px; object-fit: cover;">
+          <div class="card-body">
+            <audio src="{{ url_for('static', filename='mas/music melodias/6.mp3') }}" controls style="height: 40px; margin-left: -6px; width: 250px;"></audio>
+          </div>
+        </div>
+      </div>
+
+      <br><br><br><br><br>
+
+      <div class="cajapeque">
+
+        <div class="card" style="width: 17rem;height: 20rem; background: #cb6bf7">
+          <img src="{{ url_for('static', filename='mas/img melodias/7.jpeg') }}" class="card-img-top" alt="Melodía" style="width: 270px; height: auto; max-height: 250px; object-fit: cover;">
+          <div class="card-body">
+            <audio src="{{ url_for('static', filename='mas/music melodias/7.mp3') }}" controls style="height: 40px; margin-left: -6px; width: 250px;"></audio>
+          </div>
+        </div>
+
+        <div class="card" style="width: 17rem;height: 20rem; background: #cb6bf7">
+          <img src="{{ url_for('static', filename='mas/img melodias/8.jpeg') }}" class="card-img-top" alt="Melodía" style="width: 270px; height: auto; max-height: 250px; object-fit: cover;">
+          <div class="card-body">
+            <audio src="{{ url_for('static', filename='mas/music melodias/8.mp3') }}" controls style="height: 40px; margin-left: -6px; width: 250px;"></audio>
+          </div>
+        </div>
+
+        <div class="card" style="width: 17rem;height: 20rem; background: #cb6bf7">
+          <img src="{{ url_for('static', filename='mas/img melodias/9.jpeg') }}" class="card-img-top" alt="Melodía" style="width: 270px; height: auto; max-height: 250px; object-fit: cover;">
+          <div class="card-body">
+            <audio src="{{ url_for('static', filename='mas/music melodias/9.mp3') }}" controls style="height: 40px; margin-left: -6px; width: 250px;"></audio>
+          </div>
+        </div>
+      </div>
+
+      <br><br><br><br>
+
+      
+
+          </div>
+        
+
+      
+
+      
+
+
+  </div>
+ <a href="{{ url_for('Masculino') }}"><button class="btn btn-primary" type="submit" style="width: 40px; height: 40px; margin-left: 60px; margin-top: 8%;"><i class='bx bx-undo' style="margin-left: -9px; font-size: 200%; margin-top: -3px;"></i></button>
+
+  <script src="js/scrollreveal.min.js"></script>
+
+    <script src="js/swiper-bundle.min.js"></script>
+
+    <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+</body>
+</html>

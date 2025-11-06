@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='mas/Resilience 1.png') }}" type="image/x-icon">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='est_historial.css') }}">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <title>Mi Historial de Citas — RESILIENCE</title>
+</head>
+<body>
+    <main class="main">
+        <section class="section container" style="padding-top:6rem; padding-bottom:4rem;">
+            
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                {% for category, message in messages %}
+                  <div class="alert alert-{{ category }}">
+                    <span>{{ message }}</span>
+                    <button class="alert-close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+                  </div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+
+            <h2 class="sectiontitle">Mi Historial de Citas</h2>
+            <p style="text-align:center; max-width:800px; margin:0 auto 2rem;">
+                Aquí puedes ver un registro de todas tus citas pasadas (Realizadas y Canceladas).
+            </p>
+
+            <div class="module-actions" style="max-width: 900px; margin: 0 auto 1.5rem; justify-content: center;">
+                <a class="btn action-btn-outline" href="{{ url_for('agenda') }}" style="background: #555;">
+                    <i class="fas fa-arrow-left"></i> Volver a la Agenda
+                </a>
+            </div>
+
+            {% if citas %}
+            <div class="horarios-lista">
+                {% for cita in citas %}
+                <div class="horario-card">
+                    <div class="horario-detalle">
+                        <span class="estado-cita estado-{{ cita.Estado_Cita | lower }}">
+                            {{ cita.Estado_Cita }}
+                        </span>
+                        <span class="dia-semana">{{ cita.Fecha_Formateada }} - {{ cita.Hora_Formateada }}</span>
+                        <span class="periodo-bloque" style="margin-top: 0.5rem; font-weight: 500;">
+                            <i class="fas fa-map-marker-alt"></i> 
+                            {{ cita.Nota_Ubicacion if cita.Nota_Ubicacion else 'N/A' }}
+                        </span>
+                        <span class="hora-bloque" style="margin-top: 0.5rem;">
+                            <i class="fas fa-user-md"></i> {{ cita.Nombre_Psicologo }}
+                        </span>
+                    </div>
+
+                    <div class="horario-acciones" style="min-width: 160px; justify-content: flex-end;">
+                        
+                        {% if cita.Estado_Cita == 'REALIZADA' %}
+                            
+                            {% if cita.calificada %}
+                                <span class="calificacion-enviada">
+                                    <i class="fas fa-check-circle"></i> Calificación Enviada
+                                </span>
+                            {% else %}
+                                <a href="{{ url_for('est_calificar_cita', id_cita=cita.ID_Cita) }}" 
+                                   class="btn action-btn" 
+                                   title="Calificar el servicio recibido">
+                                    <i class="fas fa-star"></i> Calificar Servicio
+                                </a>
+                            {% endif %}
+
+                        {% else %}
+                            <small style="color: #aaa; font-size: 0.8rem; text-align: right;">(Cita Cancelada)</small>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="horario-vacio-msg">
+                <i class="fas fa-history"></i>
+                <p>No tienes citas en tu historial (realizadas o canceladas).</p>
+            </div>
+            {% endif %}
+
+        </section>
+    </main>
+</body>
+</html>

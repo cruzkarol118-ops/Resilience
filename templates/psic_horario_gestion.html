@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='mas/Resilience 1.png') }}" type="image/x-icon">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='psic_horario_gestion.css') }}">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <title>Mis Horarios — RESILIENCE</title>
+</head>
+<body>
+    <main class="main">
+        <section class="section container" style="padding-top:6rem; padding-bottom:4rem;">
+            
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                {% for category, message in messages %}
+                  <div class="alert alert-{{ category }}">
+                    <span>{{ message }}</span>
+                    <button class="alert-close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+                  </div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+
+            <h2 class="sectiontitle">Mis Horarios de Disponibilidad</h2>
+            <p style="text-align:center; max-width:800px; margin:0 auto 2rem;">
+                Aquí puedes ver, editar o eliminar los bloques de tiempo que has registrado.
+            </p>
+
+            <div class="module-actions module-actions-header" style="max-width: 900px; margin: 0 auto 1.5rem;">
+                
+                <a class="btn action-btn" style="flex: 1;" href="{{ url_for('psic_registrar_horario') }}">
+                    <i class="fas fa-plus-circle"></i> Registrar Nuevo Horario
+                </a>
+                
+                <a class="btn action-btn-outline" style="flex: 1; background: #555;" href="{{ url_for('agenda') }}">
+                    <i class="fas fa-arrow-left"></i> Volver a la Agenda
+                </a>
+            </div>
+
+            {% if horarios %}
+            <div class="horarios-lista">
+                {% for horario in horarios %}
+                <div class="horario-card">
+                    <div class="horario-detalle">
+                        <span class="dia-semana">{{ horario.Dia_Semana }}</span>
+                        <span class="hora-bloque">{{ horario.Hora_Inicio_Formateada }} - {{ horario.Hora_Fin_Formateada }}</span>
+                        <span class="periodo-bloque">{{ horario.Periodo_Academico }}</span>
+                    </div>
+                    <div class="horario-acciones">
+                        <a class="btn action-btn-outline action-edit" href="{{ url_for('psic_editar_horario', id_horario=horario.ID_Horario) }}" title="Editar Bloque">
+                            <i class="fas fa-pencil-alt"></i>
+                        </a>
+                        <form action="{{ url_for('psic_eliminar_horario', id_horario=horario.ID_Horario) }}" method="POST"
+                              onsubmit="return confirm('¿Estás seguro de que deseas eliminar este bloque de horario? Las citas activas para esta hora se verán afectadas.');">
+                            <button type="submit" class="btn action-btn-danger" title="Eliminar Bloque">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="horario-vacio-msg">
+                <i class="fas fa-clock"></i>
+                <p>Aún no has registrado ningún horario de disponibilidad para este periodo.</p>
+                <p>Haz clic en "Registrar Nuevo Horario" para empezar.</p>
+            </div>
+            {% endif %}
+
+        </section>
+    </main>
+</body>
+</html>

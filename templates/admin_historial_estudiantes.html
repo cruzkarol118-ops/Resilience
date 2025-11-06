@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='mas/Resilience 1.png') }}" type="image/x-icon">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_roles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_historial_estudiantes.css') }}">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    
+    <title>Historial de Estudiantes — RESILIENCE</title>
+</head>
+<body>
+    <main class="main">
+        <section class="section container" style="padding-top:6rem; padding-bottom:4rem;">
+            
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                {% for category, message in messages %}
+                  <div class="alert alert-{{ category }}">
+                    <span>{{ message }}</span>
+                    <button class="alert-close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+                  </div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+
+            <h2 class="sectiontitle">Panel de Historial de Estudiantes</h2>
+            <p style="text-align:center; max-width:800px; margin:0 auto 2rem;">
+                Usuarios con citas 'Realizadas', agrupados por período académico. 
+                El período se calcula basado en la fecha de la cita.
+            </p>
+            
+            <form method="GET" action="{{ url_for('admin_historial_estudiantes') }}" class="form-busqueda">
+                <div class="form-group">
+                    <input type="search" name="search_query" class="input" 
+                           placeholder="Buscar por ID, Username, Nombre o Apellido..." 
+                           value="{{ current_search }}">
+                    <button type="submit" class="btn action-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </form>
+            
+            <div class="module-actions" style="max-width: 900px; margin: 0 auto 1.5rem; justify-content: center;">
+                <a class="btn action-btn-outline" href="{{ url_for('agenda') }}" style="background: #555;">
+                    <i class="fas fa-arrow-left"></i> Volver a la Agenda
+                </a>
+            </div>
+
+            {% if usuarios_agrupados %}
+            <div class="horarios-lista">
+                
+                {% for periodo, usuarios in usuarios_agrupados.items() %}
+                <h3 class="periodo-header">Periodo: {{ periodo }} </h3>
+                
+                    {% for usuario in usuarios %}
+                    <div class="horario-card">
+                        <div class="horario-detalle">
+                            <span class="dia-semana">{{ usuario.Nombres }} {{ usuario.Apellidos }}</span>
+                            <span class="hora-bloque">@{{ usuario.Username }} (ID: {{ usuario.ID_Usuario }})</span>
+                            <span class="periodo-bloque" style="color: #fff; margin-top: 0.5rem;">
+                                {{ usuario.Total_Citas_Realizadas }} cita(s) realizada(s) en este período.
+                            </span>
+                        </div>
+                        
+                        <div class="horario-acciones">
+                            <a href="{{ url_for('admin_ver_historial_detalle', id_usuario=usuario.ID_Usuario) }}" 
+                               class="btn action-btn" 
+                               title="Ver Historial Completo">
+                                <i class="fas fa-history"></i> Ver Historial
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="horario-vacio-msg">
+                <i class="fas fa-users-slash"></i>
+                <p>
+                    No se encontraron estudiantes con citas 'Realizadas'
+                    {% if current_search %}
+                    que coincidan con la búsqueda.
+                    {% else %}
+                    .
+                    {% endif %}
+                </p>
+            </div>
+            {% endif %}
+
+        </section>
+    </main>
+</body>
+</html>

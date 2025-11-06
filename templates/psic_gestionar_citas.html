@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='mas/Resilience 1.png') }}" type="image/x-icon">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='psic_gestionar_citas.css') }}">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <title>Gestionar Citas — RESILIENCE</title>
+</head>
+<body>
+    <main class="main">
+        <section class="section container" style="padding-top:6rem; padding-bottom:4rem;">
+            
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                {% for category, message in messages %}
+                  <div class="alert alert-{{ category }}">
+                    <span>{{ message }}</span>
+                    <button class="alert-close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+                  </div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+
+            <h2 class="sectiontitle">Gestión de Citas (Psicólogo)</h2>
+            <p style="text-align:center; max-width:800px; margin:0 auto 2rem;">
+                Citas asignadas a tu agenda. Las citas 'SOLICITADAS' requieren tu acción para ser confirmadas.
+            </p>
+
+            <div class="module-actions" style="max-width: 900px; margin: 0 auto 1.5rem; justify-content: center;">
+                <a class="btn action-btn-outline" href="{{ url_for('agenda') }}" style="background: #555;">
+                    <i class="fas fa-arrow-left"></i> Volver a la Agenda
+                </a>
+            </div>
+
+            {% if citas %}
+            <div class="horarios-lista">
+                {% for cita in citas %}
+                <div class="horario-card">
+                    <div class="horario-detalle">
+                        <span class="estado-cita estado-{{ cita.Estado_Cita | lower }}">
+                            {{ cita.Estado_Cita }}
+                        </span>
+                        
+                        <span class="dia-semana">{{ cita.Fecha_Formateada }} - {{ cita.Hora_Formateada }}</span>
+                        
+                        {% if cita.Estado_Cita != 'SOLICITADA' %}
+                        <span class="periodo-bloque" style="margin-top: 0.5rem; font-weight: 500;">
+                            <i class="fas fa-map-marker-alt"></i> 
+                            {{ cita.Nota_Ubicacion if cita.Nota_Ubicacion else 'Ubicación Pendiente' }}
+                        </span>
+                        {% endif %}
+
+                        <span class="hora-bloque" style="margin-top: 0.5rem;">
+                            <i class="fas fa-user-graduate"></i> {{ cita.Estudiante_Nombres }} {{ cita.Estudiante_Apellidos }}
+                        </span>
+                        <span class="periodo-bloque">
+                            <i class="fas fa-phone"></i> {{ cita.Telefono_Contacto if cita.Telefono_Contacto else 'No registrado' }}
+                        </span>
+                    </div>
+
+                    <div class="horario-acciones">
+                        
+                        {% if cita.Estado_Cita == 'SOLICITADA' %}
+                        <form class="form-confirm-actions" action="{{ url_for('psic_confirmar_cita', id_cita=cita.ID_Cita) }}" method="POST">
+                            <div class="form-confirm-group">
+                                <label for="nota_ubicacion_{{ cita.ID_Cita }}">Asignar Ubicación*:</label>
+                                
+                                <input type="text" 
+                                       id="nota_ubicacion_{{ cita.ID_Cita }}" 
+                                       name="nota_ubicacion" 
+                                       class="form-confirm-input" 
+                                       value="{{ cita.Nota_Ubicacion if cita.Nota_Ubicacion is not none else '' }}" 
+                                       placeholder="Ej: Sede 4, Bloque G, Consultorio 1" 
+                                       required>
+                            </div>
+                            <div class="form-confirm-buttons">
+                                <button type="submit" class="btn action-btn-confirm" title="Confirmar Cita">
+                                    <i class="fas fa-check"></i> Confirmar
+                                </button>
+                                <a class="btn action-btn-danger" 
+                                   href="#" 
+                                   onclick="document.getElementById('form-cancel-{{ cita.ID_Cita }}').submit(); return false;"
+                                   title="Cancelar Cita">
+                                    <i class="fas fa-times"></i>
+                                </a>
+                            </div>
+                        </form>
+                        <form id="form-cancel-{{ cita.ID_Cita }}" 
+                              action="{{ url_for('psic_cancelar_cita', id_cita=cita.ID_Cita) }}" 
+                              method="POST" style="display: none;"
+                              onsubmit="return confirm('¿Estás seguro de que deseas CANCELAR esta solicitud de cita?');">
+                        </form>
+                        
+                        {% elif cita.Estado_Cita == 'CONFIRMADA' %}
+                        
+                        <div class="form-state-actions">
+                            <a href="{{ url_for('psic_editar_cita_detalle', id_cita=cita.ID_Cita) }}" class="btn action-btn-edit" title="Editar Ubicación">
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+                            <form action="{{ url_for('psic_realizar_cita', id_cita=cita.ID_Cita) }}" method="POST"
+                                  onsubmit="return confirm('¿Marcar esta cita como REALIZADA?');">
+                                <button type="submit" class="btn action-btn-confirm" title="Marcar como Realizada">
+                                    <i class="fas fa-check-double"></i>
+                                </button>
+                            </form>
+                            <form action="{{ url_for('psic_revertir_cita', id_cita=cita.ID_Cita) }}" method="POST"
+                                  onsubmit="return confirm('¿Devolver esta cita a SOLICITADA?');">
+                                <button type="submit" class="btn action-btn-outline" title="Revertir a Solicitada">
+                                    <i class="fas fa-undo"></i>
+                                </button>
+                            </form>
+                            <form action="{{ url_for('psic_cancelar_cita', id_cita=cita.ID_Cita) }}" method="POST"
+                                  onsubmit="return confirm('¿Cancelar esta cita (ya confirmada)?');">
+                                <button type="submit" class="btn action-btn-danger" title="Cancelar Cita">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </form>
+                        </div>
+                        
+                        {% elif cita.Estado_Cita == 'REALIZADA' %}
+                        <a href="{{ url_for('psic_editar_cita_detalle', id_cita=cita.ID_Cita) }}" class="btn action-btn-edit" title="Editar Ubicación">
+                            <i class="fas fa-pencil-alt"></i>
+                        </a>
+                        <small style="color: #aaa; font-size: 0.8rem;">(Finalizada)</small>
+                        
+                        {% else %} <small style="color: #aaa; font-size: 0.8rem;">(Finalizada)</small>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="horario-vacio-msg">
+                <i class="fas fa-calendar-times"></i>
+                <p>No tienes citas asignadas o solicitadas en este momento.</p>
+            </div>
+            {% endif %}
+
+        </section>
+    </main>
+</body>
+</html>

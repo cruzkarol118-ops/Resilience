@@ -1,0 +1,200 @@
+
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+     }
+
+body{
+    background: linear-gradient(90deg, #cb6bf7 0% ,#eb80eb 50%);
+    color: white;
+}
+
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 10px;
+    background: linear-gradient(90deg, #eb80eb 0%, #cb6bf7 50%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+h1{
+    font-size: 24px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 80px;
+}
+
+.navbar a {
+    font-size: 18px;
+    color: aliceblue;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 35px;
+    margin-right: 80px;
+}
+
+.home{
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    padding: 0 6%;
+}
+
+.home-content{
+    
+    max-width: 600px;
+}
+
+h2{
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+h3{
+    font-size: 32px;
+    font-weight: 700;
+    color: #973397 ;
+}
+
+p{
+    font-size: 17px;
+    margin: 30px 0 50px;
+}
+
+.btn-box {
+    width: 300px;
+    height: 45px;
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+.btn-box a {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 130px;
+    height: 100%;
+    background: rgb(14, 0, 211);
+    border: 2px solid rgb(54, 0, 202);
+    border-radius: 8px;
+    font-size: 21px;
+    color: azure;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0px;
+    z-index: 1;
+    overflow: hidden;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.btn-box a:hover{
+    color: rgb(255, 255, 255);
+}
+
+
+.btn-box a:nth-child(2){
+    background: transparent;
+    color: black;
+}
+
+.btn-box a:nth-child(2)::before{
+    background: rgb(52, 0, 194);
+}
+
+.btn-box a:nth-child(2):hover{
+    color: rgb(5, 168, 18);
+}
+
+.btn-box a::before {
+    content: "";
+    position: absolute;
+    top:0;
+    left:0;
+    width: 0;
+    height: 100%;
+    background: rgb(0, 26, 255);
+    z-index: -1;
+    transition: .5s;
+}
+
+.btn-box a:hover::before{
+    width: 100%;
+}
+
+.home-sci{
+    position: absolute;
+    bottom: 40px;
+    width: 170px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.home-sci a {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 50%;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    z-index: 1;
+    overflow: hidden;
+    transition: .5s;
+
+}
+
+.home-sci a :hover {
+    color: white;
+}
+
+.home-sci a::before {
+    content: "";
+    position: absolute;
+    top: o;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: #df7fcf ;
+    z-index: -1;
+    transition: .5s;
+
+}
+
+
+.home-sci a:hover:before {
+    width: 100%;
+}
+
+.home-imghover{
+    position: absolute;
+    top: 0;
+    margin-right: 200px;
+    right: 30px;
+    width: 500px;
+    height: 100%;
+    background: transparent;
+    transition: 3s;
+    
+}
+
+.home-imghover:hover {
+    background: #eb80eb  50%;
+    opacity: .8;
+}

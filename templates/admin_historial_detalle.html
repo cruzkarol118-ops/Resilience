@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='mas/Resilience 1.png') }}" type="image/x-icon">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='est_historial.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_historial_detalle.css') }}">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    
+    <title>Historial de {{ estudiante.Nombres }} — RESILIENCE</title>
+</head>
+<body>
+    <main class="main">
+        <section class="section container" style="padding-top:6rem; padding-bottom:4rem;">
+            
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                {% for category, message in messages %}
+                  <div class="alert alert-{{ category }}">
+                    <span>{{ message }}</span>
+                    <button class="alert-close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+                  </div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+
+            <h2 class="sectiontitle">Historial de Citas del Estudiante</h2>
+            <p style="text-align:center; max-width:800px; margin:0 auto 2rem;">
+                Viendo el historial completo de: <strong>{{ estudiante.Nombres }} {{ estudiante.Apellidos }}</strong>
+            </p>
+
+            <div class="module-actions" style="max-width: 900px; margin: 0 auto 1.5rem; justify-content: center;">
+                <a class="btn action-btn-outline" href="{{ url_for('admin_historial_estudiantes') }}" style="background: #555;">
+                    <i class="fas fa-arrow-left"></i> Volver al Listado
+                </a>
+            </div>
+
+            {% if citas %}
+            <div class="horarios-lista">
+                {% for cita in citas %}
+                <div class="horario-card">
+                    
+                    <div class="horario-detalle">
+                        <span class="estado-cita estado-{{ cita.Estado_Cita | lower }}">
+                            {{ cita.Estado_Cita }}
+                        </span>
+                        <span class="dia-semana">{{ cita.Fecha_Formateada }} - {{ cita.Hora_Formateada }}</span>
+                        <span class="periodo-bloque" style="margin-top: 0.5rem; font-weight: 500;">
+                            <i class="fas fa-map-marker-alt"></i> 
+                            {{ cita.Nota_Ubicacion if cita.Nota_Ubicacion else 'N/A' }}
+                        </span>
+                        <span class="hora-bloque" style="margin-top: 0.5rem;">
+                            <i class="fas fa-user-md"></i> {{ cita.Nombre_Psicologo }}
+                        </span>
+
+                        {% if cita.Estado_Cita == 'REALIZADA' %}
+                        <div class="calificacion-detalle">
+                            {% if cita.Calificacion %}
+                                <span class="calificacion-detalle-titulo">Calificación del Estudiante:</span>
+                                <span class="calificacion-detalle-stars">
+                                    {% for i in range(1, 6) %}
+                                        {% if i <= cita.Calificacion %}
+                                            <i class="fas fa-star"></i>
+                                        {% else %}
+                                            <i class="far fa-star star-off"></i> 
+                                        {% endif %}
+                                    {% endfor %}
+                                    ({{ cita.Calificacion }}/5)
+                                </span>
+                                
+                                {% if cita.Comentario and cita.Comentario.strip() != '' %}
+                                <p class="calificacion-detalle-comentario">
+                                    <strong>Comentario:</strong> "{{ cita.Comentario }}"
+                                </p>
+                                {% else %}
+                                <p class="calificacion-detalle-comentario">
+                                    (No dejó comentario)
+                                </p>
+                                {% endif %}
+                            
+                            {% else %}
+                                <span class="calificacion-no-enviada">
+                                    <i class="fas fa-comment-slash"></i> (Cita aún no calificada por el estudiante)
+                                </span>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="horario-acciones" style="min-width: 160px; justify-content: flex-end;">
+                        {% if cita.Estado_Cita == 'REALIZADA' %}
+                            {% if cita.Calificacion %}
+                            <span class="calificacion-enviada">
+                                <i class="fas fa-check-circle"></i> Calificación Recibida
+                            </span>
+                            {% endif %}
+                        {% elif cita.Estado_Cita == 'CANCELADA' %}
+                            <small style="color: #aaa; font-size: 0.8rem; text-align: right;">(Cita Cancelada)</small>
+                        {% else %}
+                            <small style="color: #aaa; font-size: 0.8rem; text-align: right;">(Cita Pendiente)</small>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="horario-vacio-msg">
+                <i class="fas fa-history"></i>
+                <p>Este estudiante no tiene citas en su historial.</p>
+            </div>
+            {% endif %}
+
+        </section>
+    </main>
+</body>
+</html>
