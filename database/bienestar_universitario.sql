@@ -34,7 +34,7 @@ CREATE TABLE `citas` (
   `Fecha_Cita` date NOT NULL,
   `Hora_Cita` varchar(5) NOT NULL,
   `Estado_Cita` enum('SOLICITADA','CONFIRMADA','CANCELADA','REALIZADA') DEFAULT 'SOLICITADA',
-  `Fecha_Solicitud` datetime DEFAULT current_timestamp(),
+  `Fecha_Solicitud` timestamp DEFAULT current_timestamp(),
   `Nota_Ubicacion` varchar(255) DEFAULT 'Sede 4, Bloque G, Consultorio 1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

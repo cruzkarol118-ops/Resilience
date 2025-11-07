@@ -5,12 +5,19 @@ import json
 import os
 # ---- Base de datos: Importación ----
 import mysql.connector
-# ---- Base de datos: Configuración ----
-DB_CONFIG = {
+# ---- Base de datos Local: Configuración ----
+'''DB_CONFIG = {
     'host': 'localhost',
     'user': 'root',
     'password': '',
     'database': 'bienestar_universitario'
+}'''
+# ---- Base de datos: Configuración ----
+DB_CONFIG = {
+    'host': 'sql5.freesqldatabase.com',
+    'user': 'sql5806480',
+    'password': 'N69s1CIP3B',
+    'database': 'sql5806480'
 }
 # Función para obtener la conexión a la base de datos
 def get_db_connection():
