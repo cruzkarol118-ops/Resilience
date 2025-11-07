@@ -2316,5 +2316,16 @@ def chatbot_cancelar_mi_cita():
             
     return jsonify({'success': False, 'message': 'Error de conexión a la base de datos.'})
 
+@app.route('/debug_static')
+def debug_static():
+    base = os.path.join(os.path.dirname(__file__), 'static')
+    output = {}
+    for root, dirs, files in os.walk(base):
+        rel = os.path.relpath(root, base)
+        output[rel] = files
+    # Indicar si index1.css existe
+    output['_index1_exists'] = os.path.exists(os.path.join(base, 'index1.css'))
+    return jsonify(output)
+
 if __name__ == '__main__':
     app.run(debug=True)
