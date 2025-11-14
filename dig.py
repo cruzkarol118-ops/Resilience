@@ -18,7 +18,7 @@ DB_CONFIG = {
     'user': 'freedb_bienestar_universitario',
     'password': 'FjPD5WsEE!$K?7W',
     'database': 'freedb_bienestar_universitario',
-    'db_port': 3306
+    'port': 3306
 }
 # Función para obtener la conexión a la base de datos
 def get_db_connection():
