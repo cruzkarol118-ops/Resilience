@@ -14,10 +14,10 @@ import mysql.connector
 }'''
 # ---- Base de datos: Configuración ----
 DB_CONFIG = {
-    'host': 'sql213.infinityfree.com',
-    'user': 'if0_40421641',
-    'password': '8y9vSz0esYf',
-    'database': 'if0_40421641_bienestar_universitario'
+    'host': 'sql5.freesqldatabase.com',
+    'user': 'sql5807835',
+    'password': 'SVvSQbS4ba',
+    'database': 'sql5807835'
 }
 # Función para obtener la conexión a la base de datos
 def get_db_connection():
